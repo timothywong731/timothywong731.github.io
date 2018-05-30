@@ -12,15 +12,21 @@ redirect_from:
 Education
 ======
 * MSc in Data Science
-... Part-time with Distinction. Royal Holloway, University ogf London
+
+... Part-time with Distinction. Royal Holloway, University ogf London..  
+
 ... Dissertation: *Sequence-to-Sequence Model for Signal Analysis*
 
 * MSc in Policy Research
-... Full-time with Merit. University of Bristol
+
+... Full-time with Merit. University of Bristol..  
+
 ... Dissertation: *Multilevel Cross-Classification Model for International Development Assistance Financing*
 
 * BSSc (Hons.) in Government and Public Administration
-... Full-time. Chinese University of Hong Kong
+
+... Full-time. Chinese University of Hong Kong..  
+
 ... Double minor in Finance and French Language 
 
 Work experience

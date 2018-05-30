@@ -9,8 +9,8 @@
 locale                   : "en-GB"
 title                    : "Timothy Wong"
 title_separator          : "-"
-name                     : &name "Your Name"
-description              : &description "personal description"
+name                     : &name "Timothy Wong"
+description              : &description "Personal website"
 url                      : https://timothywong731.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "timothywong731/timothywong731.github.io"
@@ -55,7 +55,7 @@ yandex_site_verification :
 
 # Social Sharing
 twitter:
-  username               : &twitter
+  username               : timothywong731
 facebook:
   username               :
   app_id                 :

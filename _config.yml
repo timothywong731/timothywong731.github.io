@@ -238,10 +238,9 @@ defaults:
       path: ""
       type: patents
     values:
-      layout: single
+      layout: talk
       author_profile: false
       share: false
-      comment: false
   # _talks
   - scope:
       path: ""

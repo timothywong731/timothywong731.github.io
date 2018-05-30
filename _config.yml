@@ -80,7 +80,7 @@ analytics:
 author:
   name             : "Timothy"
   avatar           : "profile.png"
-  bio              : "Your biography for the left-hand sidebar"
+  bio              : "Experienced data scientist with knowledge in the energy sector"
   location         : "United Kingdom"
   employer         :
   googlescholar    :
@@ -97,7 +97,7 @@ author:
   keybase          :
   instagram        :
   lastfm           :
-  linkedin         : "https://www.linkedin.com/in/timothy-wong-7824ba30"
+  linkedin         : "timothy-wong-7824ba30"
   orcid            : "https://orcid.org/0000-0003-1943-6448"
   pinterest        :
   soundcloud       :
@@ -191,11 +191,11 @@ defaults:
       type: posts
     values:
       layout: single
-      author_profile: true
-      read_time: true
-      comments: true
-      share: true
-      related: true
+      author_profile: false
+      read_time: false
+      comments: false
+      share: false
+      related: false
   # _pages
   - scope:
       path: ""
@@ -211,7 +211,7 @@ defaults:
       layout: single
       author_profile: true
       share: true
-      comments: true
+      comments: false
   # _publications
   - scope:
       path: ""
@@ -220,7 +220,7 @@ defaults:
       layout: single
       author_profile: true
       share: true
-      comments: true
+      comments: false
   # _portfolio
   - scope:
       path: ""

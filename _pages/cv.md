@@ -11,9 +11,13 @@ redirect_from:
 
 Education
 ======
-* B.S. in Github, Github University, 2012
-* M.S. in Jekyll, Github University, 2014
-* Ph.D in Version Control Theory, Github University, 2018 (expected)
+* MSc in Data Science (Part-time with Distinction, London)
+Dissertation: 'Sequence-to-Sequence Model for Signal Analysis'
+
+* MSc in Policy Research (Full-time with Merit, University of Bristol)
+Dissertation: 'Multilevel Cross-Classification Model for International Development Assistance Financing'
+
+* BSSc (Hons.) in Government and Public Administration with double minor in Finance and French Language (Full-time, Chinese University of Hong Kong)
 
 Work experience
 ======

@@ -9,3 +9,5 @@ location: "Bristol, United Kingdom"
 ---
 
 ![Bristol Data Scientists Meeting, January 2018](../images/bristol2018.jpg)
+
+Slides can be downloaded (here)[../files/bristol.pdf].

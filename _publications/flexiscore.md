@@ -3,8 +3,8 @@ title: "Parallelised Time Series Spike Detection using R on the Hadoop Platform"
 collection: publications
 permalink: /publication/flexiscore
 date: 2017-07-04
-venue: 'useR! 2018 (International R User Conference)'
-paperurl: '../files/brussels.pdf'
+venue: 'International R User Conference (useR!)'
+paperurl: 'https://www.user2017.brussels/uploads/poster2.pdf'
 citation: 'Wong, Timothy. (2017). &quot;Parallelised Time Series Spike Detection using R on the Hadoop Platform.&quot; <i>International R User Conference 2018</i>.'
 ---
 

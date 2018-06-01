@@ -1,15 +1,14 @@
 ---
 title: "Business Analytics in R"
 collection: teaching
-type: "Two days workshop"
+type: "Workshop"
 permalink: /teaching/r-training
 venue: "British Gas"
 date: 2018-03-22
 location: "Staines-upon-Thames, United Kingdom"
 ---
 
-R is an open source language for statistical programming. It is widely used among
-statisticians, academic researchers, and business analysts across the world. This is a two days workshop for business analysts, with a focus on the following topics:
+R is an open source language for statistical programming. It is widely used among statisticians, academic researchers, and business analysts across the world. This is a two days workshop for business analysts with little or no experience in the R language. The course focuses on several technical topics.
 
 * Tidyverse
 * Regression models
@@ -19,4 +18,4 @@ statisticians, academic researchers, and business analysts across the world. Thi
 * Survival analysis
 * Unsupervised learning
 
-The training material can be downloaded [here](https://github.com/timothywong731/r-training/releases)
+The course is fully open-sourced including all the example datasets. The training materials can be downloaded [here](https://github.com/timothywong731/r-training/releases).

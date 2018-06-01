@@ -57,15 +57,38 @@ Committee Membership
 
 Skills
 ======
-* Statistics and Machine Learning
-  * R (Open source R and Microsoft Machine Learning Server)
+* Statistical Languages
+  * R, Microsoft ML Server (Revolution-R)
+  * Python scikit-learn
+  * Stata, SPSS
+
+* Deep Learning and Machine Learning Frameworks
+  * TensorFlow, Theano
+  * CUDA C
+  * Keras
+  * OpenCV, EmguCV
+  * Spark MLlib
+  
+* Programming Languages and Web Technologies
+  * C#
+  * ASP.NET MVC
+  * PostSharp
   * Python
-  * Hadoop
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+  * PHP
+  * XML, JSON
+  * JQuery
+  * Ajax
+
+* Database, Big Data and Cloud
+  * Microsoft SQL Server
+  * Oracle
+  * MySQL
+  * Hadoop MapReduce
+  * Hive
+  * HDinsight (MS Azure)
+  
+* Internet of Things (Hardware Prototyping)
+  * Arduino and Raspberry Pi
 
 Publications
 ======
@@ -85,6 +108,10 @@ Teaching
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
-Service and leadership
+Awards and Honours
 ======
-* Currently signed in to 43 different slack teams
+* Technology and Engineering Award (Overall Winner)
+  * Centrica plc (2017)
+  
+* Peace and Development Foundation Award
+  * United Nations (2011)

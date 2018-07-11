@@ -2,8 +2,8 @@
 title: "Parallelised Time Series Spike Detection using R on the Hadoop Platform"
 collection: talks
 type: "Poster"
-permalink: /talks/flexiscore
-venue: "International R User Conference (useR!)"
+permalink: /talks/user2017
+venue: "The Conference for Users of R (useR!) 2017"
 date: 2017-07-04
 location: "Brussels, Belgium"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Optimal Resource Allocation"
 collection: tutorials
-type: "?"
+date: 2020-07-17
 permalink: /tutorials/resourceoptimisation
 ---
 

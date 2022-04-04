@@ -1,5 +1,5 @@
 ---
-title: "Optimal Resource Allocation"
+title: "Linear Programming for Optimal Resources Allocation"
 collection: tutorials
 date: 2020-07-17
 permalink: /tutorials/resourceoptimisation

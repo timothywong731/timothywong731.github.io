@@ -11,8 +11,11 @@ main:
     url: /publications/
     
   - title: "Teaching"
-    url: /teaching/    
+    url: /teaching/
     
+  - title: "Tutorials"
+    url: /tutorials/
+
   # - title: "Portfolio"
     # url: /portfolio/
         

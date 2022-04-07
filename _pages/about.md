@@ -14,4 +14,4 @@ Tim holds a bachelor's degree in Government and Public Administration from the C
 
 Before commencing his career in Data Science, Tim worked for the United Nations Development Programme (UNDP) where he facilitated the UN's climate change initiatives. He has also previously worked in various public sector organisations in Hong Kong and China. Tim is fully proficient in English, Cantonese and Mandarin, he is also an ongoing and self-motivated French learner.
 
-Outside of his day job, Tim is a Reservist at the British Army. He completed officership training at the Royal Military Academy Sandhurst and commissioned into the Royal Corps of Signals, where he serves as an Specialist Reserve Officer.
+Outside of his day job, Tim is a Reservist at the British Army. He completed officership training at the Royal Military Academy Sandhurst and commissioned into the Royal Corps of Signals, where he serves as a Specialist Reserve Officer.

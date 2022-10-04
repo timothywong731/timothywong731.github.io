@@ -12,4 +12,4 @@ Timothy (Tim) is a professional Data Scientist with nearly ten years experience 
 
 Tim grew up and received education in Hong Kong. Before commencing his career in Data Science, he studied Political Sciences with a focus in Contemporary China Studies. He worked for the United Nations where he facilitated policy initiatives with partner institutions. He has previously worked in various overseas organisations including government and the third sector. Tim is fully proficient in English, Cantonese and Mandarin, he is also an ongoing and self-motivated French learner.
 
-Outside of his civilian career, Tim is a Reservist at the British Army. He has completed officership training at the Royal Military Academy Sandhurst and commissioned into the Royal Corps of Signals, where he serves as a Specialist Reserve Officer.
+Outside of his civilian career, Tim is a Reservist at the UK Armed Forces. He has completed officership training at the Royal Military Academy Sandhurst and commissioned into the Royal Corps of Signals.

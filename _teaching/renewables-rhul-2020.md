@@ -1,5 +1,5 @@
 ---
-title: "EE3020 Renewable Energy Systems"
+title: "Renewable Energy Systems"
 collection: teaching
 type: "Guest Lecture"
 permalink: /teaching/renewables-rhul-2020

@@ -3,7 +3,7 @@ title: "Business Analytics in R"
 collection: teaching
 type: "Workshop"
 permalink: /teaching/r-training
-venue: "British Gas"
+venue: "Various Locations"
 date: 2018-03-22
 location: "Staines-upon-Thames, United Kingdom"
 ---

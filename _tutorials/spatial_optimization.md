@@ -1,7 +1,7 @@
 ---
 title: "Geospatial Optimization"
 collection: tutorials
-date: 2023-02-24
+date: 2025-06-17
 permalink: /tutorials/geospatial_optimization
 ---
 

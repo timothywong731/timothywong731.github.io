@@ -12,7 +12,8 @@ redirect_from:
 Timothy (Tim) is a professional data scientist with over ten years experience in big data, machine learning, gen-
 erative AI and analytics applications. His experience spans across multiple sectors including energy, telecom-
 munications, defence and national security. He has strong, proven track record of delivering complex machine
-learning applications in an enterprise environment. Tim is professionally qualified as a Chartered Statistician
+learning applications in an enterprise environment. Tim is also a published author in machine learning research and 
+frequent conference speaker. Apart from these, Tim is professionally qualified as a Chartered Statistician
 (CStat) and a Chartered Engineer (CEng).
 
 

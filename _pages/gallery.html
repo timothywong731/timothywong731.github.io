@@ -9,7 +9,7 @@ columns: 3
 <div class="gallery" style="--gallery-columns: {{ page.columns | default: 3 }}">
   {% for item in site.data.gallery %}
   <figure class="gallery-item">
-    <img src="{{ item.image }}" alt="{{ item.description | default: 'Gallery image' }}" data-desc="{{ item.description | escape }}">
+    <img class="gallery-thumb" src="{{ item.image }}" alt="{{ item.description | default: 'Gallery image' }}" data-desc="{{ item.description | escape }}" loading="lazy">
     {% if item.description %}
     <figcaption>{{ item.description }}</figcaption>
     {% endif %}
@@ -30,10 +30,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const modalDesc = modal.querySelector('.desc');
   const closeBtn = modal.querySelector('.gallery-close');
 
-  document.querySelectorAll('.gallery-item img').forEach(img => {
+  document.querySelectorAll('.gallery-thumb').forEach(img => {
     img.addEventListener('click', () => {
       modalImg.src = img.src;
-      modalDesc.textContent = img.dataset.desc || '';
+      modalImg.alt = img.alt;
+      modalDesc.textContent = img.dataset.desc || img.alt || '';
       modal.classList.add('open');
     });
   });

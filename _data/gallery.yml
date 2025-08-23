@@ -1,0 +1,6 @@
+- image: "/images/gallery/birds_1.jpg"
+  description: "Bird sitting on a branch"
+- image: "/images/gallery/birds_2.jpg"
+  description: "Flying bird"
+- image: "/images/gallery/birds_3.jpg"
+  # description is optional

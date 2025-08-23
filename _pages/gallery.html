@@ -1,0 +1,47 @@
+---
+layout: single
+title: "Gallery"
+permalink: /gallery/
+author_profile: true
+columns: 3
+---
+
+<div class="gallery" style="--gallery-columns: {{ page.columns | default: 3 }}">
+  {% for item in site.data.gallery %}
+  <figure class="gallery-item">
+    <img src="{{ item.image }}" alt="{{ item.description | default: 'Gallery image' }}" data-desc="{{ item.description | escape }}">
+    {% if item.description %}
+    <figcaption>{{ item.description }}</figcaption>
+    {% endif %}
+  </figure>
+  {% endfor %}
+</div>
+
+<div id="gallery-modal" class="gallery-modal">
+  <span class="gallery-close">&times;</span>
+  <img src="" alt="">
+  <p class="desc"></p>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('gallery-modal');
+  const modalImg = modal.querySelector('img');
+  const modalDesc = modal.querySelector('.desc');
+  const closeBtn = modal.querySelector('.gallery-close');
+
+  document.querySelectorAll('.gallery-item img').forEach(img => {
+    img.addEventListener('click', () => {
+      modalImg.src = img.src;
+      modalDesc.textContent = img.dataset.desc || '';
+      modal.classList.add('open');
+    });
+  });
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal || e.target === closeBtn) {
+      modal.classList.remove('open');
+    }
+  });
+});
+</script>

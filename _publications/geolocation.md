@@ -3,7 +3,7 @@ title: "Mobile Coverage Analysis using Crowdsourced Geolocation Data"
 collection: publications
 permalink: /publication/geolocation
 date: 2025-10-15
-venue: 'arXiv (cs.AI)'
+venue: 'arXiv pre-print (cs.AI)'
 paperurl: 'https://arxiv.org/abs/2510.13459'
 citation: 'Wong, T., Freeman, T., & Feehily, J. (2025). Mobile Coverage Analysis using Crowdsourced Data. arXiv [Cs.AI]. Retrieved from http://arxiv.org/abs/2510.13459'
 ---

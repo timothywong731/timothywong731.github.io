@@ -1,0 +1,5 @@
+[     668ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:4000/images/favicon.ico?v=M44lzPylqQ:0
+[     762ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:4000/images/favicon-32x32.png?v=M44lzPylqQ:0
+[     773ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:4000/images/favicon-16x16.png?v=M44lzPylqQ:0
+[     789ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:4000/images/favicon-96x96.png?v=M44lzPylqQ:0
+[     995ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:4000/images/android-chrome-192x192.png?v=M44lzPylqQ:0

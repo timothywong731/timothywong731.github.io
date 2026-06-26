@@ -1,0 +1,70 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e5]:
+    - button [ref=e6] [cursor=pointer]
+    - list [ref=e8]:
+      - listitem [ref=e9]:
+        - link "Timothy Wong" [ref=e10] [cursor=pointer]:
+          - /url: http://localhost:4000/
+      - listitem [ref=e11]:
+        - link "Talks" [ref=e12] [cursor=pointer]:
+          - /url: http://localhost:4000/talks/
+      - listitem [ref=e13]:
+        - link "Patents" [ref=e14] [cursor=pointer]:
+          - /url: http://localhost:4000/patents/
+      - listitem [ref=e15]:
+        - link "Publications" [ref=e16] [cursor=pointer]:
+          - /url: http://localhost:4000/publications/
+      - listitem [ref=e17]:
+        - link "Teaching" [ref=e18] [cursor=pointer]:
+          - /url: http://localhost:4000/teaching/
+      - listitem [ref=e19]:
+        - link "Tutorials" [ref=e20] [cursor=pointer]:
+          - /url: http://localhost:4000/tutorials/
+  - main [ref=e21]:
+    - article [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - img "Timothy Wong" [ref=e25]
+          - generic [ref=e26]:
+            - heading "Timothy Wong" [level=1] [ref=e27]
+            - paragraph [ref=e28]: Experienced AI/ML professional and Chartered Engineer (CEng/CStat) delivering complex generative AI, big data, and analytics applications across energy, telecommunications, and national security sectors.
+            - generic [ref=e29]:
+              - link "View Publications" [ref=e30] [cursor=pointer]:
+                - /url: /publications/
+              - link "Contact Me" [ref=e31] [cursor=pointer]:
+                - /url: mailto:your-email@example.com
+        - heading "Biography" [level=3] [ref=e32]
+        - paragraph [ref=e33]: Timothy (Tim) is an IT professional with over ten years of experience in big data, machine learning (ML), generative AI, and analytics applications. His experience spans multiple sectors, including energy, telecommunications, defense and national security. He has a strong, proven track record of delivering complex AI/ML applications in enterprise environments and has led teams of experienced engineers. Tim is also a published researcher in ML and a frequent conference speaker. He is professionally qualified as both a Chartered Statistician (CStat) and a Chartered Engineer (CEng).
+        - paragraph [ref=e34]: Prior to his career in data science, Tim studied political science with a focus on quantitative research methods. He has previously worked for various international organisations in the public and third sectors.
+  - contentinfo [ref=e36]:
+    - link "Sitemap" [ref=e37] [cursor=pointer]:
+      - /url: /sitemap/
+    - list [ref=e39]:
+      - listitem [ref=e40]:
+        - strong [ref=e41]: "Follow:"
+      - listitem [ref=e42]:
+        - link "Twitter" [ref=e43] [cursor=pointer]:
+          - /url: https://twitter.com/timothywong731
+          - generic [ref=e44]: 
+          - text: Twitter
+      - listitem [ref=e45]:
+        - link "GitHub" [ref=e46] [cursor=pointer]:
+          - /url: http://github.com/timothywong731
+          - generic [ref=e47]: 
+          - text: GitHub
+      - listitem [ref=e48]:
+        - link "Feed" [ref=e49] [cursor=pointer]:
+          - /url: http://localhost:4000/feed.xml
+          - generic [ref=e50]: 
+          - text: Feed
+    - generic [ref=e51]:
+      - text: © 2026 Timothy Wong. Powered by
+      - link "Jekyll" [ref=e52] [cursor=pointer]:
+        - /url: http://jekyllrb.com
+      - text: "&"
+      - link "AcademicPages" [ref=e53] [cursor=pointer]:
+        - /url: https://github.com/academicpages/academicpages.github.io
+      - text: ", a fork of"
+      - link "Minimal Mistakes" [ref=e54] [cursor=pointer]:
+        - /url: https://mademistakes.com/work/minimal-mistakes-jekyll-theme/
+      - text: .

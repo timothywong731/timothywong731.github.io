@@ -9,12 +9,16 @@ redirect_from:
   - /about.html
 ---
 
-## Executive Summary
-**Experienced AI/ML professional and Chartered Engineer (CEng/CStat) with over a decade of expertise in delivering complex generative AI, big data, and analytics applications across energy, telecommunications, and national security sectors.**
-
-<div style="margin: 2em 0;">
-  <a href="/portfolio/" class="btn btn--large">View My Work</a>
-  <a href="/publications/" class="btn btn--large btn--inverse" style="margin-left: 1em;">Read Publications</a>
+<div class="hero-section reveal">
+  <img src="/images/tim.png" alt="Timothy Wong" class="hero-portrait">
+  <div class="hero-text">
+    <h1>Timothy Wong</h1>
+    <p class="value-prop">Experienced AI/ML professional and Chartered Engineer (CEng/CStat) delivering complex generative AI, big data, and analytics applications across energy, telecommunications, and national security sectors.</p>
+    <div class="hero-ctas">
+      <a href="/publications/" class="btn btn--large">View Publications</a>
+      <a href="mailto:your-email@example.com" class="btn btn--large btn--inverse" style="margin-left: 1em;">Contact Me</a>
+    </div>
+  </div>
 </div>
 
 ### Biography

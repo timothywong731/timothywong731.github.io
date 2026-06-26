@@ -3,18 +3,22 @@
    ========================================================================== */
 
 .masthead {
-  position: relative;
+  position: sticky;
+  top: 0;
   border-bottom: 1px solid $border-color;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   -webkit-animation: intro 0.3s both;
           animation: intro 0.3s both;
   -webkit-animation-delay: 0.15s;
           animation-delay: 0.15s;
-  z-index: 20;
+  z-index: 100;
 
   &__inner-wrap {
     @include container;
     @include clearfix;
-    padding: 1em 1em 1em;
+    padding: 0.75em 1em;
     font-family: $sans-serif-narrow;
 
     @include breakpoint($x-large) {
@@ -45,9 +49,27 @@
   display: block;
   list-style-type: none;
   white-space: nowrap;
+  transition: $transition-smooth;
+
+  a {
+    padding: 0.5em 1em;
+    color: $text-color;
+    transition: $transition-fast;
+
+    &:hover {
+      color: $primary-color;
+      background-color: rgba($primary-color, 0.05);
+      border-radius: 4px;
+    }
+  }
 
   &--lg {
     padding-right: 2em;
     font-weight: 700;
+
+    a {
+      font-size: $type-size-4;
+      color: $primary-color !important;
+    }
   }
 }

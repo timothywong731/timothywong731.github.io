@@ -15,7 +15,7 @@ author_profile: true
   <a href="https://ollama.com/timothywong731/tim-360m-instruct" class="btn btn--large" style="margin-left: 1em;" target="_blank" rel="noopener">🦙 Run on Ollama</a>
 </p>
 
-## Why build an LLM from scratch?
+## Why build a model from scratch?
 
 Most practitioners fine-tune existing models. TIM goes further. It implements a modern decoder-only transformer from first principles, trains its own tokeniser, curates a multi-source corpus, and pretrains with a competitive small-model recipe, all within the limits of consumer grade GPUs. The result is a fully owned model family under the Apache 2.0 licence, where every design decision is documented and reproducible.
 

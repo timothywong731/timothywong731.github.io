@@ -24,7 +24,7 @@ Most practitioners fine-tune existing models. TIM goes further. It implements a 
 Large models get the headlines, but small models do much of the real work. A model with a few hundred million parameters fits on a laptop, a phone or a single office server, and for many focused tasks that is all you need.
 
 - **Smart, efficient and focused.** A small model tuned for a specific job can match a far larger general model on that job. Inference is rapid, even on edge devices and modest hardware.
-- **Private by design.** Small models can be fine-tuned on internal data and deployed entirely on premise. Your data never leaves your network, which matters in regulated industries such as energy, finance and government.
+- **Private by design.** Small models can be trained and fine-tuned on internal data. The entire workflow can be deployed entirely on premise. Your data never leaves your network, which matters in regulated industries such as energy, finance and government.
 - **Fast, local and yours.** Responses arrive with low latency, there are no per-token API bills, and everything works offline. You hold the weights, so the model can never be withdrawn, altered or priced out from under you.
 - **Cheap to run.** A small model draws a fraction of the power and cost of a large one. That makes it practical to serve many users, run continuously, or embed in products where a large model would never fit the budget.
 

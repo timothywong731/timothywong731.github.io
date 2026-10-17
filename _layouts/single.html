@@ -2,7 +2,9 @@
 layout: default
 ---
 {%- if page.collection %}{% assign kind = site.data.navigation.main | where: "collection", page.collection | first %}{% else %}{% assign kind = nil %}{% endif %}
-<article class="entry wrap">
+<div class="wrap with-author">
+{% include author-card.html %}
+<article class="entry">
   <header class="entry__head">
     {%- if kind %}
     <p class="entry__back"><a href="{{ kind.url | relative_url }}">All {{ kind.title | downcase }}</a></p>
@@ -36,3 +38,4 @@ layout: default
   {% include share.html %}
   {%- endif %}
 </article>
+</div>

@@ -1,12 +1,15 @@
 ---
 layout: default
 ---
-<div class="wrap section-page">
-  <header class="page-head">
-    <h1>{{ page.title }}</h1>
-    {%- if page.description %}
-    <p class="page-head__lede">{{ page.description }}</p>
-    {%- endif %}
-  </header>
-  {{ content }}
+<div class="wrap with-author">
+  {% include author-card.html %}
+  <div class="section-page">
+    <header class="page-head">
+      <h1>{{ page.title }}</h1>
+      {%- if page.description %}
+      <p class="page-head__lede">{{ page.description }}</p>
+      {%- endif %}
+    </header>
+    {{ content }}
+  </div>
 </div>

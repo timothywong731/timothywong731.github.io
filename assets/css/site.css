@@ -453,17 +453,88 @@ main:focus { outline: none; }
   .work-year__items { max-width: 46rem; }
 }
 
+/* ---------- Author card (every page except home) ---------- */
+
+.with-author {
+  display: grid;
+  gap: 0;
+}
+
+.author-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-5);
+}
+
+.author-card__photo {
+  flex: none;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.author-card__text {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.author-card__name {
+  justify-self: start;
+  color: var(--ink);
+  font-weight: 700;
+  font-stretch: 112%;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.author-card__name:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--data);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+.author-card__line {
+  color: var(--ink-2);
+  font-size: var(--step--1);
+  line-height: 1.45;
+}
+
+@media (min-width: 64rem) {
+  .with-author {
+    grid-template-columns: 13rem minmax(0, 1fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+  .author-card {
+    position: sticky;
+    top: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding-top: var(--space-7);
+  }
+  .author-card__photo {
+    width: 8rem;
+    height: 8rem;
+  }
+  .author-card__name { font-size: var(--step-1); }
+}
+
 /* ---------- Section pages ---------- */
 
 .page-head {
   display: grid;
   gap: var(--space-4);
-  padding-block: var(--space-8) var(--space-6);
+  padding-block: var(--space-7) var(--space-6);
 }
 
+/* Inner pages share their width with the author card, so titles stop below the home page's display size. */
 .page-head h1,
 .entry__title {
-  font-size: var(--step-display);
+  font-size: clamp(2.5rem, 1.5rem + 3.6vw, 4.25rem);
   font-weight: 700;
   font-stretch: 112%;
   line-height: 1;

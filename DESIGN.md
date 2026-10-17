@@ -30,7 +30,7 @@ typography:
     fontVariation: '"wdth" 125'
   page-title:
     fontFamily: Archivo
-    fontSize: 5.25rem
+    fontSize: 4.25rem
     fontWeight: 700
     lineHeight: 1
     letterSpacing: -0.03em
@@ -78,6 +78,7 @@ rounded:
   control: 6px
   m: 8px
   icon: 112px
+  full: 9999px
 spacing:
   "1": 4px
   "2": 8px
@@ -152,6 +153,9 @@ components:
     rounded: "{rounded.s}"
   portrait:
     rounded: "{rounded.m}"
+  author-photo:
+    rounded: "{rounded.full}"
+    size: 128px
   site-icon:
     backgroundColor: "{colors.primary}"
     textColor: "{colors.paper}"
@@ -191,7 +195,7 @@ The palette is neutral surfaces, navy ink and a single blue for links and focus.
 Archivo (Google Fonts, variable: `wdth` 62–125, `wght` 100–900) is the only typeface. Monospace appears only inside code blocks.
 
 - **Display:** the name on the home page, at 125% width and weight 720, set tight (-0.035em, line-height 0.95). It sizes fluidly from 2.75rem to 5.25rem.
-- **Page title:** section and page H1s, at 112% width and weight 700, on the same fluid scale.
+- **Page title:** section and page H1s, at 112% width and weight 700. They share their row with the author card, so they top out at 4.25rem, one step below the home display size (2.5rem to 4.25rem).
 - **Entry title:** H1s for talks, papers and patents, whose titles are long. These are one step down (2rem to 3.25rem) and capped at 24ch.
 - **Tagline:** 1.625rem, weight 450, in Ink 2.
 - **Body:** 17px, line-height 1.6. Prose measure is capped at 66ch, and the home bio at 62ch.
@@ -205,8 +209,9 @@ Sentence case everywhere. No all-caps labels, no letter-spaced eyebrows above he
 - **Alignment:** everything is left-aligned to a single edge. Nothing is centred except the lightbox caption.
 - **Rhythm:** spacing comes from a 4px-based scale (4, 8, 12, 16, 24, 32, 48, 72, 104). The footer sits 104px below content.
 - **Home:** from 64rem up, the introduction and a 17rem portrait sit side by side, vertically centred, and fill the first screen. Below 64rem the portrait shrinks to a 7rem square above the name.
+- **Inner pages:** from 64rem up, a 13rem author card column sits to the left of the content, 72px apart, and stays in view as you scroll. Below 64rem the card becomes a one-row strip above the page title.
 - **Section pages:** an 8.5rem year column beside the list of items. Below 48rem the year sits above its items.
-- **Breakpoints:** 48rem (year groups stack) and 64rem (two-column hero, inline nav instead of the menu button).
+- **Breakpoints:** 48rem (year groups stack) and 64rem (two-column hero, author card column, inline nav instead of the menu button).
 
 ```
 ┌ Timothy Wong ──── Talks Publications Patents Tutorials Project Teaching Gallery ◐ ┐
@@ -234,7 +239,8 @@ Corner radius encodes what a thing is, not a single house radius:
 
 - **4px:** photos and code blocks.
 - **6px:** buttons and icon buttons.
-- **8px:** the portrait.
+- **8px:** the home page portrait.
+- **Circle:** the author card photo.
 - **22% (112px on the 512px grid):** the site icon.
 
 ## Components
@@ -242,6 +248,7 @@ Corner radius encodes what a thing is, not a single house radius:
 - **Header:** the name on the left, the nav on the right, then the theme toggle. The menu order is set in `_data/navigation.yml`: Talks, Publications, Patents, Tutorials, Project, Teaching, Gallery. The current section is underlined in data blue, 2px. Below 64rem the nav collapses behind a "Menu" button that swaps to a close icon.
 - **Calls to action:** "View talks" (primary) and "View publications" (quiet) on the home page. Use one primary button per group. Buttons are at least 44px tall.
 - **Profile links:** an icon plus a text label, from `site.social.links` in `_config.yml`. The same list feeds the JSON-LD `sameAs`. Brand marks are from Simple Icons (CC0), rendered in the current text colour. They appear on the home page and in the footer of every other page.
+- **Author card:** on every page except home: a circle-cropped photo (8rem on desktop, 3.5rem on phones), the name linking home, and the one-liner from `site.author.bio` in `_config.yml`. It keeps the person in view on deep pages that visitors reach straight from search.
 - **Footer:** the copyright line plus links to the sitemap and `llms.txt`. On inner pages it also has the profile links.
 - **Work list (section pages):** grouped by year. Each item has a title link plus one line of prose metadata ("Talk at EARL 2024, Brighton, United Kingdom"), never fragments joined by separators.
 - **Entry facts:** a definition list (Date, Format, Venue, Location, or Filed and Reference for patents) under the title of every talk, paper, patent, tutorial and teaching page.
@@ -274,6 +281,7 @@ Motion only answers an action: hover colours, the menu opening, and the "Copied"
 
 ## Do's and Don'ts
 
+- Do keep the author card's one-liner to a single sentence. Edit it in `_config.yml` (`author.bio`), not in the template.
 - Do keep the home page to the introduction. New content goes on its own page, linked from the nav.
 - Do write metadata as a sentence ("Paper in arXiv pre-print (cs.AI)"), not as fragments joined with dots or dashes.
 - Do keep every interactive target at least 44 by 44px, with a visible 2px data-blue focus ring.

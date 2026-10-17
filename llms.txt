@@ -1,0 +1,28 @@
+---
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
+{%- assign about = site.pages | where: "url", "/" | first -%}
+{%- assign project = site.pages | where: "url", "/projects/" | first -%}
+{%- assign sections = "publications,patents,talks,tutorials,teaching" | split: "," -%}
+# {{ site.name }}
+
+> {{ site.description }}
+
+{{ about.content | strip_html | normalize_whitespace }}
+
+## Profile
+
+- [Biography]({{ site.url }}/): {{ site.social.job_title }}
+- [{{ project.title }}]({{ site.url }}/projects/): {{ project.excerpt | strip_html | normalize_whitespace }}
+{%- for link in site.social.links %}
+- [{{ link | remove: "https://" | remove: "www." }}]({{ link }})
+{%- endfor %}
+{% for label in sections %}
+{%- assign docs = site[label] | sort: "date" | reverse %}
+## {{ label | capitalize }}
+{% for doc in docs %}
+- [{{ doc.title | strip }}]({{ site.url }}{{ doc.url }}){% if doc.venue %} ({{ doc.venue }}{% if doc.date %}, {{ doc.date | date: "%Y" }}{% endif %}){% endif %}: {{ doc.excerpt | strip_html | normalize_whitespace | truncate: 200 }}
+{%- endfor %}
+{% endfor %}

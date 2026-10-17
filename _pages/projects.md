@@ -2,6 +2,7 @@
 layout: single
 title: "TIM-360M: Transformer Inference Model"
 excerpt: "A 360M-parameter small language model, trained end-to-end on consumer-grade hardware."
+og_image: "tim-360m-hero.png"
 permalink: /projects/
 author_profile: true
 ---

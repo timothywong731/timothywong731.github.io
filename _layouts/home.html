@@ -9,21 +9,10 @@ layout: default
     <div class="actions hero__actions">
       <a class="button" href="{{ '/talks/' | relative_url }}">View talks</a>
       <a class="button button--quiet" href="{{ '/publications/' | relative_url }}">View publications</a>
+      <a class="button button--quiet" href="{{ '/projects/' | relative_url }}">View projects</a>
     </div>
     {% include social-links.html class="social-links--hero" %}
   </div>
   <img class="hero__portrait" src="{{ '/images/tim-640.jpg' | relative_url }}" width="640" height="640" alt="Portrait of {{ site.name }}">
 </section>
 
-{%- assign projects = site.projects | sort: "date" | reverse %}
-<section class="home-projects wrap" aria-labelledby="projects-title">
-  <div class="home-projects__head">
-    <h2 id="projects-title">Projects</h2>
-    <a href="{{ '/projects/' | relative_url }}">All projects</a>
-  </div>
-  <ul class="tiles tiles--index">
-    {%- for p in projects %}
-    {% include project-tile.html p=p heading="h3" media="false" %}
-    {%- endfor %}
-  </ul>
-</section>

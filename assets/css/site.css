@@ -1013,7 +1013,8 @@ main:focus { outline: none; }
 @media (max-width: 47.99rem) {
   /* Home: tighter hero so the buttons and profile links fit on the first screen. */
   .hero { gap: var(--space-4); padding-block: var(--space-5) var(--space-4); }
-  .hero__portrait { width: 5.5rem; }
+  /* A centred circle, matching the author card's photo on inner pages. */
+  .hero__portrait { width: 6rem; justify-self: center; border-radius: 50%; }
   .hero__tagline { margin-top: var(--space-3); font-size: 1.375rem; }
   .hero__bio { margin-top: var(--space-4); }
   .hero__actions { margin-top: var(--space-5); }

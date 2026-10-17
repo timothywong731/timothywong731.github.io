@@ -163,6 +163,7 @@ exclude:
   - tmp
   - CONTRIBUTING.md
   - DESIGN.md
+  - CLAUDE.md
   - .playwright-mcp
   # template leftovers, kept out of the published site and search results
   - _posts

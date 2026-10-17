@@ -1,6 +1,7 @@
 // Latent Drift: the ambient background. Points drift on a curl-noise field around slowly moving centroids,
 // a nearest-neighbour graph re-forms every frame, and queries walk it greedily towards a target, the way a
-// search moves through a vector index. Plain canvas, no dependencies. DESIGN.md has the rationale.
+// search moves through a vector index. Each centroid carries a pool of light that tints the mesh around it.
+// Plain canvas, no dependencies. DESIGN.md has the rationale.
 (function () {
   'use strict';
 
@@ -23,8 +24,30 @@
     edgeAlpha: 0.22,
     nodeAlpha: 0.45,
     longLinkAlpha: 0.1,
-    signalAlpha: 0.9
+    signalAlpha: 0.9,
+    poolRadius: 0.55,   // light pool radius, as a fraction of the shorter viewport side
+    poolAlpha: 0.14,    // tint on a light ground
+    poolAlphaDark: 0.3, // additive light on a dark ground needs more to read
+    facetAlpha: 0.09,   // triangles of mutual neighbours, tinted by the nearest pool
+    bloomAlpha: 0.55    // soft halo around queries and the nodes they light
   };
+
+  // Soft radial sprites, one per colour and profile, so glow costs one drawImage instead of a gradient.
+  var sprites = {};
+  function sprite(colour, soft) {
+    var key = colour + (soft ? 'p' : 'b');
+    if (sprites[key]) return sprites[key];
+    var c = document.createElement('canvas'), x = c.getContext('2d'), r = soft ? 64 : 32;
+    c.width = c.height = 2 * r;
+    var g = x.createRadialGradient(r, r, 0, r, r, r);
+    // Pools fall off like a Gaussian; blooms have a brighter core.
+    var stops = soft ? [[0, 1], [0.25, 0.75], [0.5, 0.32], [0.75, 0.08], [1, 0]] : [[0, 1], [0.15, 0.7], [0.4, 0.18], [1, 0]];
+    for (var i = 0; i < stops.length; i++) g.addColorStop(stops[i][0], 'rgba(255,255,255,' + stops[i][1] + ')');
+    x.fillStyle = g; x.fillRect(0, 0, 2 * r, 2 * r);
+    // Keep the alpha ramp, swap in the colour: works for any CSS colour string.
+    x.globalCompositeOperation = 'source-in'; x.fillStyle = colour; x.fillRect(0, 0, 2 * r, 2 * r);
+    return (sprites[key] = c);
+  }
 
   // Seeded PRNG (mulberry32): the same seed always gives the same space.
   function prng(seed) {
@@ -67,7 +90,7 @@
     for (k in DEFAULTS) P[k] = DEFAULTS[k];
     for (k in overrides || {}) P[k] = overrides[k];
 
-    var W, H, rand, noise, t, points, centroids, longLinks, adj, edges, queries, trails, rings, nextQuery;
+    var W, H, rand, noise, t, points, centroids, longLinks, adj, edges, tris, queries, trails, rings, nextQuery;
 
     function gauss() { return (rand() + rand() + rand() - 1.5) * 1.15; }
 
@@ -76,9 +99,11 @@
       noise = perlin(rand);
       t = 0;
       points = []; centroids = []; queries = []; trails = []; rings = [];
+      var hueOffset = rand() < 0.5 ? 0 : 1;
       for (var c = 0; c < P.clusters; c++) {
         // Bias centroids to the right and top, where the page is quietest; the CSS mask does the rest.
-        centroids.push({ bx: 0.3 + 0.68 * rand(), by: 0.04 + 0.86 * rand(), x: 0, y: 0, o: rand() * 100 });
+        // Pools alternate between the signal and glow colours, so every page has both.
+        centroids.push({ bx: 0.3 + 0.68 * rand(), by: 0.04 + 0.86 * rand(), x: 0, y: 0, o: rand() * 100, hue: (c + hueOffset) % 2, flash: 0 });
       }
       placeCentroids();
       var n = Math.round(Math.min(P.maxPoints, Math.max(P.minPoints, W * H * P.density / 1e4)));
@@ -135,6 +160,15 @@
           adj[a1].push(a2); adj[a2].push(a1);
         }
       }
+      // Facets: every triangle of mutual neighbours, found once from its lowest edge (a < b < c).
+      tris = [];
+      for (var e = 0; e < edges.length; e++) {
+        var ea = edges[e][0], eb = edges[e][1];
+        for (var m = 0; m < adj[ea].length; m++) {
+          var ec = adj[ea][m];
+          if (ec > eb && seen.has(eb * 4096 + ec)) tris.push(ea, eb, ec);
+        }
+      }
       for (var l = 0; l < longLinks.length; l++) { adj[longLinks[l][0]].push(longLinks[l][1]); adj[longLinks[l][1]].push(longLinks[l][0]); }
     }
 
@@ -166,6 +200,7 @@
         p.x += p.vx * dt; p.y += p.vy * dt;
         p.act *= Math.exp(-dt / 1.4);
       }
+      for (var ci = 0; ci < centroids.length; ci++) centroids[ci].flash *= Math.exp(-dt / 1.2);
       buildGraph();
 
       nextQuery -= dt;
@@ -179,7 +214,13 @@
         var q = queries[qi];
         if (q.to < 0) {
           q.to = nextHop(q);
-          if (q.to < 0) { rings.push({ i: q.at, age: 0 }); queries.splice(qi, 1); continue; }
+          if (q.to < 0) {
+            // Arrival: a ring opens, the neighbours flicker as if activated, and their pool brightens.
+            rings.push({ i: q.at, age: 0 });
+            for (var ai = 0; ai < adj[q.at].length; ai++) { var nb = points[adj[q.at][ai]]; nb.act = Math.max(nb.act, 0.6); }
+            centroids[points[q.at].home].flash = 1;
+            queries.splice(qi, 1); continue;
+          }
         }
         q.prog += dt / P.hopTime;
         if (q.prog >= 1) {
@@ -193,9 +234,39 @@
     }
 
     function render(ctx, colours, strength) {
-      var g = strength == null ? 1 : strength, i;
+      var g = strength == null ? 1 : strength, i, c;
+      // Light adds up on a dark ground; on a light ground it can only tint.
+      var light = colours.dark ? 'lighter' : 'source-over', hues = [colours.signal, colours.glow || colours.signal];
       ctx.clearRect(0, 0, W, H);
       ctx.lineCap = 'round';
+
+      // Pools: broad light around each centroid, breathing slowly and brightening after an arrival.
+      var pr = Math.min(W, H) * P.poolRadius;
+      ctx.globalCompositeOperation = light;
+      for (c = 0; c < centroids.length; c++) {
+        var cc = centroids[c], breathe = 0.8 + 0.25 * noise(cc.o, t * 0.05, 5.3);
+        ctx.globalAlpha = Math.min(1, (colours.dark ? P.poolAlphaDark : P.poolAlpha) * g * breathe * (1 + 0.6 * cc.flash));
+        ctx.drawImage(sprite(hues[cc.hue], true), cc.x - pr, cc.y - pr, 2 * pr, 2 * pr);
+      }
+
+      // Facets: the mesh shows only where a pool lights it, in that pool's colour (three bands per hue).
+      var s2 = 2 * Math.pow(pr * 0.5, 2);
+      for (var hue = 0; hue < 2; hue++) {
+        ctx.fillStyle = hues[hue];
+        for (var fb = 1; fb <= 3; fb++) {
+          ctx.globalAlpha = P.facetAlpha * g * fb / 3;
+          ctx.beginPath();
+          for (i = 0; i < tris.length; i += 3) {
+            var A = points[tris[i]], B = points[tris[i + 1]], C = points[tris[i + 2]], home = centroids[A.home];
+            if (home.hue !== hue) continue;
+            var fx = (A.x + B.x + C.x) / 3 - home.x, fy = (A.y + B.y + C.y) / 3 - home.y;
+            if (Math.min(3, Math.ceil(3 * Math.exp(-(fx * fx + fy * fy) / s2) - 0.25)) !== fb) continue;
+            ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.closePath();
+          }
+          ctx.fill();
+        }
+      }
+      ctx.globalCompositeOperation = 'source-over';
 
       // Long-range links: faint arcs between clusters.
       ctx.strokeStyle = colours.ink; ctx.lineWidth = 1; ctx.globalAlpha = P.longLinkAlpha * g;
@@ -227,7 +298,26 @@
         ctx.beginPath(); ctx.arc(p.x, p.y, 1.3 + 1.2 * p.act, 0, 6.2832); ctx.fill();
       }
 
-      // Signal: lit paths, travelling pulses and arrival rings, the only use of the accent colour.
+      // Bloom around lit nodes and travelling pulses.
+      var bloom = sprite(colours.signal, false);
+      ctx.globalCompositeOperation = light;
+      for (i = 0; i < points.length; i++) {
+        var lp = points[i];
+        if (lp.act < 0.05) continue;
+        var br = 6 + 12 * lp.act;
+        ctx.globalAlpha = P.bloomAlpha * g * lp.act;
+        ctx.drawImage(bloom, lp.x - br, lp.y - br, 2 * br, 2 * br);
+      }
+      for (i = 0; i < queries.length; i++) {
+        var bq = queries[i];
+        if (bq.to < 0) continue;
+        var bf = bq.prog * bq.prog * (3 - 2 * bq.prog), ba = points[bq.at], bb = points[bq.to];
+        ctx.globalAlpha = P.bloomAlpha * g;
+        ctx.drawImage(bloom, ba.x + (bb.x - ba.x) * bf - 16, ba.y + (bb.y - ba.y) * bf - 16, 32, 32);
+      }
+      ctx.globalCompositeOperation = 'source-over';
+
+      // Signal: lit paths, travelling pulses and arrival rings.
       ctx.strokeStyle = colours.signal; ctx.fillStyle = colours.signal; ctx.lineWidth = 1.25;
       for (i = 0; i < trails.length; i++) {
         var tr = trails[i], ta = points[tr.a], tb = points[tr.b];
@@ -241,8 +331,6 @@
         var x = qa.x + (qb.x - qa.x) * f, y = qa.y + (qb.y - qa.y) * f;
         ctx.globalAlpha = 0.6 * P.signalAlpha * g;
         ctx.beginPath(); ctx.moveTo(qa.x, qa.y); ctx.lineTo(x, y); ctx.stroke();
-        ctx.globalAlpha = 0.16 * P.signalAlpha * g;
-        ctx.beginPath(); ctx.arc(x, y, 6, 0, 6.2832); ctx.fill();
         ctx.globalAlpha = P.signalAlpha * g;
         ctx.beginPath(); ctx.arc(x, y, 2.2, 0, 6.2832); ctx.fill();
       }
@@ -287,7 +375,7 @@
       for (var s = 0; s < 120; s++) engine.step(1 / 30);
       c.width = Math.round(w * dpr); c.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      engine.render(ctx, { ink: '#E9ECF3', signal: '#3987E5' }, 1.6);
+      engine.render(ctx, { ink: '#F0F6FC', signal: '#4493F8', glow: '#AB7DF8', dark: true }, 1.6);
     }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', paintCovers);
@@ -318,7 +406,12 @@
 
     function readColours() {
       var cs = getComputedStyle(root);
-      colours = { ink: cs.getPropertyValue('--ink').trim() || '#16213D', signal: cs.getPropertyValue('--data').trim() || '#2A78D6' };
+      colours = {
+        ink: cs.getPropertyValue('--ink').trim() || '#1F2328',
+        signal: cs.getPropertyValue('--data').trim() || '#0969DA',
+        glow: cs.getPropertyValue('--glow').trim() || '#8250DF',
+        dark: cs.getPropertyValue('color-scheme').trim() === 'dark'
+      };
       strength = (parseFloat(cs.getPropertyValue('--ambient-strength')) || 1) * (innerWidth < 768 ? 0.6 : 1);
     }
 

@@ -4,15 +4,16 @@
 
 :root {
   color-scheme: light;
-  --paper: #F6F7F9;
-  --surface: #FFFFFF;
-  --ink: #16213D;
-  --ink-2: #46506A;
-  --muted: #5D6680;
-  --rule: #DCE0E7;
-  --rule-strong: #C3C9D5;
-  --data: #2A78D6;
-  --wash: rgba(42, 120, 214, 0.08);
+  --paper: #FFFFFF;
+  --surface: #F6F8FA;
+  --ink: #1F2328;
+  --ink-2: #424A53;
+  --muted: #59636E;
+  --rule: #DFE4E9;
+  --rule-strong: #D1D9E0;
+  --data: #0969DA;
+  --glow: #8250DF;
+  --wash: rgba(129, 139, 152, 0.12);
   --ambient-strength: 1;
 
   --font: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -47,31 +48,33 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --paper: #0E1424;
-    --surface: #151C2F;
-    --ink: #E9ECF3;
-    --ink-2: #B9C1D2;
-    --muted: #929CB2;
-    --rule: #2A3450;
-    --rule-strong: #3B4766;
-    --data: #3987E5;
-    --wash: rgba(57, 135, 229, 0.14);
-    --ambient-strength: 1.1;
+    --paper: #0D1117;
+    --surface: #151B23;
+    --ink: #F0F6FC;
+    --ink-2: #C9D1D9;
+    --muted: #9198A1;
+    --rule: #2F353D;
+    --rule-strong: #3D444D;
+    --data: #4493F8;
+    --glow: #AB7DF8;
+    --wash: rgba(101, 108, 118, 0.2);
+    --ambient-strength: 1;
   }
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --paper: #0E1424;
-  --surface: #151C2F;
-  --ink: #E9ECF3;
-  --ink-2: #B9C1D2;
-  --muted: #929CB2;
-  --rule: #2A3450;
-  --rule-strong: #3B4766;
-  --data: #3987E5;
-  --wash: rgba(57, 135, 229, 0.14);
-  --ambient-strength: 1.1;
+  --paper: #0D1117;
+  --surface: #151B23;
+  --ink: #F0F6FC;
+  --ink-2: #C9D1D9;
+  --muted: #9198A1;
+  --rule: #2F353D;
+  --rule-strong: #3D444D;
+  --data: #4493F8;
+  --glow: #AB7DF8;
+  --wash: rgba(101, 108, 118, 0.2);
+  --ambient-strength: 1;
 }
 
 /* ---------- Base ---------- */
@@ -111,7 +114,7 @@ h1, h2, h3 {
 
 p { margin: 0; }
 
-::selection { background: rgba(42, 120, 214, 0.22); }
+::selection { background: color-mix(in srgb, var(--data) 25%, transparent); }
 
 :focus-visible {
   outline: 2px solid var(--data);
@@ -511,8 +514,8 @@ main:focus { outline: none; }
   overflow: hidden;
   border: 1px solid var(--rule);
   border-radius: var(--radius-m);
-  /* Covers stay navy in both themes; this is also the no-JavaScript fallback. */
-  background: linear-gradient(135deg, #16213D, #2A3450);
+  /* Covers stay dark in both themes; this is also the no-JavaScript fallback. */
+  background: linear-gradient(135deg, #0D1117, #151B23);
 }
 
 .tile__media img,
@@ -527,7 +530,7 @@ main:focus { outline: none; }
 .tile__name {
   position: absolute;
   inset: auto var(--space-4) var(--space-3);
-  color: #E9ECF3;
+  color: #F0F6FC;
   font-size: var(--step-2);
   font-weight: 700;
   font-stretch: 112%;
@@ -936,7 +939,7 @@ main:focus { outline: none; }
   padding: var(--space-4);
   border: 0;
   background: transparent;
-  color: #E9ECF3;
+  color: #F0F6FC;
 }
 
 .lightbox[open] {
@@ -946,7 +949,7 @@ main:focus { outline: none; }
 }
 
 /* ::backdrop does not inherit custom properties in older browsers, so the scrim is a literal. */
-.lightbox::backdrop { background: rgba(10, 14, 26, 0.92); }
+.lightbox::backdrop { background: rgba(1, 4, 9, 0.92); }
 
 .lightbox__figure {
   display: grid;
@@ -977,7 +980,7 @@ main:focus { outline: none; }
   gap: var(--space-3);
 }
 
-.lightbox .icon-button { color: #E9ECF3; }
+.lightbox .icon-button { color: #F0F6FC; }
 .lightbox .icon-button:hover { background: rgba(255, 255, 255, 0.12); }
 
 .lightbox__count {

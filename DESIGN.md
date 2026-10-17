@@ -1,25 +1,29 @@
 ---
 version: alpha
 name: Timothy Wong
-description: Personal portfolio of a data science, machine learning and AI engineering professional. Navy ink on cool paper, one typeface with a variable width axis, and a home page that is an introduction and nothing more.
+description: Personal portfolio of a data science, machine learning and AI engineering professional. GitHub's Primer colours in light and dark, one typeface with a variable width axis, a glowing neural-graph background, and a home page that is an introduction and nothing more.
 colors:
-  primary: "#16213D"
-  paper: "#F6F7F9"
-  surface: "#FFFFFF"
-  ink: "#16213D"
-  ink-2: "#46506A"
-  muted: "#5D6680"
-  rule: "#DCE0E7"
-  rule-strong: "#C3C9D5"
-  data: "#2A78D6"
-  paper-dark: "#0E1424"
-  surface-dark: "#151C2F"
-  ink-dark: "#E9ECF3"
-  ink-2-dark: "#B9C1D2"
-  muted-dark: "#929CB2"
-  rule-dark: "#2A3450"
-  rule-strong-dark: "#3B4766"
-  data-dark: "#3987E5"
+  primary: "#1F2328"
+  paper: "#FFFFFF"
+  surface: "#F6F8FA"
+  ink: "#1F2328"
+  ink-2: "#424A53"
+  muted: "#59636E"
+  rule: "#DFE4E9"
+  rule-strong: "#D1D9E0"
+  data: "#0969DA"
+  glow: "#8250DF"
+  paper-dark: "#0D1117"
+  surface-dark: "#151B23"
+  ink-dark: "#F0F6FC"
+  ink-2-dark: "#C9D1D9"
+  muted-dark: "#9198A1"
+  rule-dark: "#2F353D"
+  rule-strong-dark: "#3D444D"
+  data-dark: "#4493F8"
+  glow-dark: "#AB7DF8"
+  icon: "#16213D"
+  icon-ink: "#F6F7F9"
 typography:
   display:
     fontFamily: Archivo
@@ -126,6 +130,10 @@ components:
   focus-ring-dark:
     backgroundColor: "{colors.data-dark}"
     width: 2px
+  ambient-glow:
+    backgroundColor: "{colors.glow}"
+  ambient-glow-dark:
+    backgroundColor: "{colors.glow-dark}"
   code-block:
     backgroundColor: "{colors.surface}"
     rounded: "{rounded.s}"
@@ -157,8 +165,8 @@ components:
     rounded: "{rounded.full}"
     size: 128px
   site-icon:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.paper}"
+    backgroundColor: "{colors.icon}"
+    textColor: "{colors.icon-ink}"
     rounded: "{rounded.icon}"
     size: 512px
 ---
@@ -173,22 +181,25 @@ The site is a portfolio for IT professionals who arrive by searching Timothy's n
 
 The home page is deliberately just an introduction: name, tagline, bio, two calls to action (talks and publications), profile links and a portrait. Everything else is one click away in the navigation.
 
-The personality is that of a Chartered Statistician and Chartered Engineer: exact, calm and quietly confident. Nothing is decorated. Two choices give the site its voice:
+The personality is that of a Chartered Statistician and Chartered Engineer: exact, calm and quietly confident. The page itself is undecorated; the only flourish is the light in the background. Three choices give the site its voice:
 
 - **One typeface, two widths.** Archivo's width axis runs from 62% to 125%. The name and page titles use the expanded cut (112% to 125%), which reads as engineered and confident. Body text uses the normal width.
-- **Navy ink.** The text colour is taken from the navy suit in Timothy's portrait, not a generic near-black, so the site and the photo belong together. The site icon uses the same navy.
+- **GitHub's colours.** The surfaces, text, borders and link blue are GitHub's Primer tokens, so the site feels at home beside the GitHub profile and repositories it links to. Dark mode is GitHub's dark canvas. The navy from Timothy's suit survives in the site icon.
+- **Light as the accent.** Behind every page, a neural graph is lit by drifting pools of blue and violet light, in the spirit of GitHub's own glowing hero. It is the one place colour is used for atmosphere rather than meaning.
 
 ## Colors
 
-The palette is neutral surfaces, navy ink and a single blue for links and focus. Light and dark themes are designed as a pair: the dark values are chosen for the dark surface and checked against it, not inverted.
+The palette is GitHub's Primer: neutral surfaces, near-black ink and a single blue for links and focus. Light and dark themes are designed as a pair: the dark values are GitHub's own dark-mode tokens, checked against the dark canvas, not inverted. Ratios below are light / dark, against paper.
 
-- **Paper (#F6F7F9 / #0E1424):** the page background. Light is a cool, barely-grey white. Dark is a deep night navy.
-- **Surface (#FFFFFF / #151C2F):** code blocks. It is used sparingly, because the site has no cards.
-- **Ink / primary (#16213D / #E9ECF3):** headings, body text and primary buttons. It reaches 14.9:1 on paper.
-- **Ink 2 (#46506A / #B9C1D2):** the tagline, secondary copy and navigation (7.5:1).
-- **Muted (#5D6680 / #929CB2):** metadata, captions and the footer line. At 5.3:1 it still passes AA for small text.
-- **Rule (#DCE0E7 / #2A3450) and Rule strong (#C3C9D5 / #3B4766):** hairlines between rows and quiet button borders.
-- **Data (#2A78D6 / #3987E5):** the only hue. It marks link underlines, the current-page underline, focus rings and the travelling queries in the ambient background. It is never used for body text or as a button fill: white on data is 4.4:1, below AA.
+- **Paper (#FFFFFF / #0D1117):** the page background, GitHub's default canvas.
+- **Surface (#F6F8FA / #151B23):** code blocks, GitHub's subtle canvas. It is used sparingly, because the site has no cards.
+- **Ink / primary (#1F2328 / #F0F6FC):** headings, body text and primary buttons (15.8:1 / 17.4:1).
+- **Ink 2 (#424A53 / #C9D1D9):** the tagline, secondary copy and navigation (9.0:1 / 12.3:1).
+- **Muted (#59636E / #9198A1):** metadata, captions and the footer line, GitHub's muted foreground (6.1:1 / 6.5:1).
+- **Rule (#DFE4E9 / #2F353D) and Rule strong (#D1D9E0 / #3D444D):** hairlines between rows and quiet button borders. Rule is GitHub's muted border flattened onto paper; Rule strong is its default border.
+- **Data (#0969DA / #4493F8):** the only hue on the page itself, GitHub's accent. It marks link underlines, the current-page underline, focus rings, and the queries and blue pools in the ambient background. It is never used for body text or as a button fill: white on the dark-mode blue is 3.1:1, below AA.
+- **Glow (#8250DF / #AB7DF8):** GitHub's violet. It appears only as light in the ambient background, never on text, borders or buttons.
+- **Wash:** GitHub's neutral hover fill (`rgba(129,139,152,0.12)` / `rgba(101,108,118,0.2)`) behind hovered nav links and quiet buttons.
 
 ## Typography
 
@@ -254,7 +265,7 @@ Corner radius encodes what a thing is, not a single house radius:
 - **Author card:** on every page except home: a circle-cropped photo (8rem on desktop, 3.5rem on phones), the name linking home, and the one-liner from `site.author.bio` in `_config.yml`. It keeps the person in view on deep pages that visitors reach straight from search.
 - **Footer:** the copyright line plus links to the sitemap and `llms.txt`. On inner pages it also has the profile links.
 - **Work list (section pages):** grouped by year. Each item has a title link plus one line of prose metadata ("Talk at EARL 2024, Brighton, United Kingdom"), never fragments joined by separators.
-- **Project tiles (`/projects/`):** a grid of tiles, newest first, three across on desktop and one on phones (`minmax(14rem, 1fr)`). Each tile has a 16:10 picture with an 8px radius and a 1px rule border, then the title, a one-sentence summary from `excerpt`, and "year, language" in muted text. The whole tile is one link. A tile whose project has a `link` goes straight there and carries an outbound arrow plus hidden "(external site)" text. Without a `link`, it opens the project's own page. A project without a `thumbnail` gets a cover: a still frame of Latent Drift seeded by its title, in paper ink on a navy gradient, with the title set in display type. It is navy in both themes.
+- **Project tiles (`/projects/`):** a grid of tiles, newest first, three across on desktop and one on phones (`minmax(14rem, 1fr)`). Each tile has a 16:10 picture with an 8px radius and a 1px rule border, then the title, a one-sentence summary from `excerpt`, and "year, language" in muted text. The whole tile is one link. A tile whose project has a `link` goes straight there and carries an outbound arrow plus hidden "(external site)" text. Without a `link`, it opens the project's own page. A project without a `thumbnail` gets a cover: a still frame of Latent Drift seeded by its title, lit with its blue and violet pools on GitHub's dark canvas, with the title set in display type. It is dark in both themes.
 - **Entry facts:** a definition list (Date, Format, Venue, Location, Built with, or Filed and Reference for patents) under the title of every talk, paper, patent, tutorial and teaching page.
 - **Citation:** on papers, with "Copy citation" (primary) and "Read the paper" (quiet).
 - **Share:** LinkedIn, X and "Copy link".
@@ -277,8 +288,10 @@ The glyph outlines come from the Google Fonts subset `css2?family=Archivo:wdth,w
 
 `assets/js/ambient.js` draws a quiet generative field behind every page. It has no dependencies, costs about 0.2ms of script per frame, and runs at 30fps.
 
-- **What it is:** points drift through a divergence-free curl-noise field, anchored loosely to five slowly wandering cluster centres. A k-nearest-neighbour graph (k = 3) is rebuilt every frame, with edge opacity falling with the square of length, plus a few long-range arcs between clusters. Every few seconds a query starts at a random node and walks the graph greedily towards a target, stopping at a local optimum, the way a search moves through a vector index such as HNSW. Its path lights up in data blue and fades, and arrival releases one ring.
-- **Colour:** the graph uses `--ink` and the queries use `--data`, read from CSS so the theme toggle repaints it instantly. `--ambient-strength` (1 light, 1.1 dark) scales all opacities.
+- **What it is:** points drift through a divergence-free curl-noise field, anchored loosely to five slowly wandering cluster centres. A k-nearest-neighbour graph (k = 3) is rebuilt every frame, with edge opacity falling with the square of length, plus a few long-range arcs between clusters. Every few seconds a query starts at a random node and walks the graph greedily towards a target, stopping at a local optimum, the way a search moves through a vector index such as HNSW. Its path lights up in data blue with a soft bloom and fades. On arrival a ring opens, the node's neighbours flicker as if activated, and the pool around them brightens for a moment.
+- **Light:** each cluster centre carries a broad pool of light, alternating blue (`--data`) and violet (`--glow`) so every page has both. Pools breathe slowly on their own noise. Wherever three points are mutual neighbours a triangle closes, and that mesh is tinted only where a pool falls on it, so structure appears out of the light and fades away from it. The philosophy is in "Latent Light", produced with the algorithmic-art skill.
+- **Two optics:** on the dark theme the pools, facets and bloom are composited additively (`lighter`), so overlapping light gets brighter, as GitHub's hero glow does. On the light theme additive light would vanish, so the same light is painted as a pale tint. Pools are stronger in dark mode (`poolAlphaDark`) for the same reason.
+- **Colour:** the graph uses `--ink`, the queries and blue pools `--data`, the violet pools `--glow`. All are read from CSS, so the theme toggle repaints instantly. `--ambient-strength` scales all opacities. Glow is drawn with cached radial sprites rather than per-frame gradients, so the whole frame still costs about 0.2ms of script.
 - **Restraint:** a CSS radial mask keeps it strongest at the top right and fades it to about 16% behind the reading column on the left. Cluster centres are biased to the right for the same reason. It is `aria-hidden`, ignores the pointer, and is hidden in print.
 - **Determinism:** each page has its own seed (731 mixed with the URL path), so a page looks the same on every visit, but pages differ from each other.
 - **Accessibility and cost:** with `prefers-reduced-motion` or Save-Data, the system settles off-screen and paints one still frame. The browser pauses it in background tabs. The device pixel ratio is capped at 2.
@@ -315,7 +328,7 @@ Apart from the ambient background, motion only answers an action: hover colours,
 - Do write metadata as a sentence ("Paper in arXiv pre-print (cs.AI)"), not as fragments joined with dots or dashes.
 - Do keep every interactive target at least 44 by 44px, with a visible 2px data-blue focus ring.
 - Do design light and dark together, and check both with axe.
-- Don't add a second accent colour, gradients, cards or drop shadows.
+- Don't add another accent colour, gradients, cards or drop shadows. Violet exists only as light in the ambient background.
 - Don't use emoji as icons. Use `{% include icon.html name="…" %}`.
 - Don't put labels in all caps, add eyebrows above headings, or append arrows to link text.
 - Don't number things that aren't a sequence.

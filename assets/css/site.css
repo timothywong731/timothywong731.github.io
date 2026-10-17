@@ -13,6 +13,7 @@
   --rule-strong: #C3C9D5;
   --data: #2A78D6;
   --wash: rgba(42, 120, 214, 0.08);
+  --ambient-strength: 1;
 
   --font: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, monospace;
@@ -55,6 +56,7 @@
     --rule-strong: #3B4766;
     --data: #3987E5;
     --wash: rgba(57, 135, 229, 0.14);
+    --ambient-strength: 1.1;
   }
 }
 
@@ -69,6 +71,7 @@
   --rule-strong: #3B4766;
   --data: #3987E5;
   --wash: rgba(57, 135, 229, 0.14);
+  --ambient-strength: 1.1;
 }
 
 /* ---------- Base ---------- */
@@ -149,6 +152,20 @@ main:focus { outline: none; }
   width: 1.125em;
   height: 1.125em;
   flex: none;
+}
+
+/* ---------- Ambient background (assets/js/ambient.js) ---------- */
+
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* Strongest at the top right, fading towards the reading column on the left. */
+  -webkit-mask-image: radial-gradient(135% 115% at 100% 0%, #000 22%, rgba(0, 0, 0, 0.45) 58%, rgba(0, 0, 0, 0.16) 100%);
+  mask-image: radial-gradient(135% 115% at 100% 0%, #000 22%, rgba(0, 0, 0, 0.45) 58%, rgba(0, 0, 0, 0.16) 100%);
 }
 
 /* ---------- Controls ---------- */
@@ -864,6 +881,6 @@ main:focus { outline: none; }
 /* ---------- Print ---------- */
 
 @media print {
-  .site-header, .site-footer, .share, .actions, .skip-link { display: none !important; }
+  .site-header, .site-footer, .share, .actions, .skip-link, .ambient { display: none !important; }
   body { background: #fff; color: #000; }
 }

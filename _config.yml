@@ -97,7 +97,7 @@ analytics:
 author:
   name             : "Timothy"
   avatar           : "tim.png"
-  bio              : "Chartered Statistician and Chartered Engineer working in data science, machine learning and AI engineering." # one-liner beside the photo on every page except home
+  bio              : "Data science, machine learning and AI engineering." # one-liner beside the photo on every page except home
   location         : "United Kingdom"
   employer         :
   googlescholar    :
@@ -163,6 +163,7 @@ exclude:
   - tmp
   - CONTRIBUTING.md
   - DESIGN.md
+  - .playwright-mcp
   # template leftovers, kept out of the published site and search results
   - _posts
   - _drafts

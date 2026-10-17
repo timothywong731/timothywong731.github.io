@@ -188,7 +188,7 @@ The palette is neutral surfaces, navy ink and a single blue for links and focus.
 - **Ink 2 (#46506A / #B9C1D2):** the tagline, secondary copy and navigation (7.5:1).
 - **Muted (#5D6680 / #929CB2):** metadata, captions and the footer line. At 5.3:1 it still passes AA for small text.
 - **Rule (#DCE0E7 / #2A3450) and Rule strong (#C3C9D5 / #3B4766):** hairlines between rows and quiet button borders.
-- **Data (#2A78D6 / #3987E5):** the only hue. It marks link underlines, the current-page underline and focus rings. It is never used for body text or as a button fill: white on data is 4.4:1, below AA.
+- **Data (#2A78D6 / #3987E5):** the only hue. It marks link underlines, the current-page underline, focus rings and the travelling queries in the ambient background. It is never used for body text or as a button fill: white on data is 4.4:1, below AA.
 
 ## Typography
 
@@ -231,7 +231,10 @@ Sentence case everywhere. No all-caps labels, no letter-spaced eyebrows above he
 
 ## Elevation & Depth
 
-The site is flat. Hierarchy comes from type size, width and weight, and from hairline rules. There are no drop shadows and no cards. Only the gallery lightbox sits above the page: a native `<dialog>` over a 92% navy scrim.
+The site is flat. Hierarchy comes from type size, width and weight, and from hairline rules. There are no drop shadows and no cards. There are two layers besides the page itself:
+
+- **Below:** the ambient background, a fixed full-screen canvas at `z-index: -1` behind all content.
+- **Above:** the gallery lightbox, a native `<dialog>` over a 92% navy scrim.
 
 ## Shapes
 
@@ -269,9 +272,20 @@ A "TW" monogram: Archivo at 125% width and weight 700, tracked -0.02em, in paper
 
 The glyph outlines come from the Google Fonts subset `css2?family=Archivo:wdth,wght@125,700&text=TW`. To change the icon, regenerate every size from that subset so they stay identical.
 
+### Ambient background: Latent Drift
+
+`assets/js/ambient.js` draws a quiet generative field behind every page. It has no dependencies, costs about 0.2ms of script per frame, and runs at 30fps.
+
+- **What it is:** points drift through a divergence-free curl-noise field, anchored loosely to five slowly wandering cluster centres. A k-nearest-neighbour graph (k = 3) is rebuilt every frame, with edge opacity falling with the square of length, plus a few long-range arcs between clusters. Every few seconds a query starts at a random node and walks the graph greedily towards a target, stopping at a local optimum, the way a search moves through a vector index such as HNSW. Its path lights up in data blue and fades, and arrival releases one ring.
+- **Colour:** the graph uses `--ink` and the queries use `--data`, read from CSS so the theme toggle repaints it instantly. `--ambient-strength` (1 light, 1.1 dark) scales all opacities.
+- **Restraint:** a CSS radial mask keeps it strongest at the top right and fades it to about 16% behind the reading column on the left. Cluster centres are biased to the right for the same reason. It is `aria-hidden`, ignores the pointer, and is hidden in print.
+- **Determinism:** each page has its own seed (731 mixed with the URL path), so a page looks the same on every visit, but pages differ from each other.
+- **Accessibility and cost:** with `prefers-reduced-motion` or Save-Data, the system settles off-screen and paints one still frame. The browser pauses it in background tabs. The device pixel ratio is capped at 2.
+- **Tuning:** all constants are in `DEFAULTS` at the top of the file. The full philosophy and a seed-explorer viewer were produced with the algorithmic-art skill. If you rebuild the viewer, inline this file so both run the same algorithm.
+
 ### Motion
 
-Motion only answers an action: hover colours, the menu opening, and the "Copied" state on copy buttons, all 120–200ms. Nothing animates on load or on scroll. `prefers-reduced-motion` turns all of it off.
+Apart from the ambient background, motion only answers an action: hover colours, the menu opening, and the "Copied" state on copy buttons, all 120–200ms. Nothing animates on scroll. `prefers-reduced-motion` turns all of it off, and the background becomes a still frame.
 
 ### Content and data
 
@@ -290,4 +304,5 @@ Motion only answers an action: hover colours, the menu opening, and the "Copied"
 - Don't use emoji as icons. Use `{% include icon.html name="…" %}`.
 - Don't put labels in all caps, add eyebrows above headings, or append arrows to link text.
 - Don't number things that aren't a sequence.
-- Don't add load-time or scroll-triggered animation.
+- Don't add load-time or scroll-triggered animation. The ambient background is the only motion that isn't a response to an action.
+- Don't raise the ambient background's opacity until it competes with text. It should be noticed on the second look, not the first.

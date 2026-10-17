@@ -290,18 +290,18 @@
     var seed = 731;
     for (var i = 0; i < location.pathname.length; i++) seed = Math.imul(seed ^ location.pathname.charCodeAt(i), 2654435761);
 
-    var w = innerWidth, h = innerHeight, dpr = Math.min(devicePixelRatio || 1, 2);
+    var w = canvas.clientWidth || innerWidth, h = canvas.clientHeight || innerHeight, dpr = Math.min(devicePixelRatio || 1, 2);
     var engine = window.LatentDrift.create(w, h, seed);
     var colours, strength;
 
     function readColours() {
       var cs = getComputedStyle(root);
       colours = { ink: cs.getPropertyValue('--ink').trim() || '#16213D', signal: cs.getPropertyValue('--data').trim() || '#2A78D6' };
-      strength = parseFloat(cs.getPropertyValue('--ambient-strength')) || 1;
+      strength = (parseFloat(cs.getPropertyValue('--ambient-strength')) || 1) * (innerWidth < 768 ? 0.6 : 1);
     }
 
     function size() {
-      w = innerWidth; h = innerHeight; dpr = Math.min(devicePixelRatio || 1, 2);
+      w = canvas.clientWidth || innerWidth; h = canvas.clientHeight || innerHeight; dpr = Math.min(devicePixelRatio || 1, 2);
       canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
       engine.resize(w, h);
     }
@@ -337,7 +337,11 @@
     var resizeTimer;
     addEventListener('resize', function () {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function () { size(); if (still.matches || saveData) paint(); }, 150);
+      resizeTimer = setTimeout(function () {
+        // The canvas is 100vh tall, so mobile address-bar changes leave its size alone; only real resizes repaint.
+        if (canvas.clientWidth === w && canvas.clientHeight === h) return;
+        readColours(); size(); if (still.matches || saveData) paint();
+      }, 150);
     });
     // Theme changes swap ink and signal colours without restarting the simulation.
     new MutationObserver(function () { readColours(); paint(); }).observe(root, { attributes: true, attributeFilter: ['data-theme'] });

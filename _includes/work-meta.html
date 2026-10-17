@@ -1,0 +1,9 @@
+{%- comment -%} One-line description of a work item, written as prose: "Talk at EARL 2024, Brighton, United Kingdom". {%- endcomment -%}
+{%- assign i = include.item -%}
+{%- case i.collection -%}
+  {%- when "talks" -%}{{ i.type | default: "Talk" }} at {{ i.venue }}{% if i.location %}, {{ i.location }}{% endif %}
+  {%- when "publications" -%}Paper in {{ i.venue }}
+  {%- when "patents" -%}Patent {{ i.filedref }}
+  {%- when "teaching" -%}{{ i.type | default: "Teaching" }} at {{ i.venue }}{% if i.location %}, {{ i.location }}{% endif %}
+  {%- when "tutorials" -%}Tutorial
+{%- endcase -%}

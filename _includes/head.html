@@ -1,21 +1,28 @@
-{% include base_path %}
-
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 {% include seo.html %}
 
-<link href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
-
-<!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1424" media="(prefers-color-scheme: dark)">
 <script>
-  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  // Apply a saved theme before first paint so dark-mode visitors never see a light flash.
+  (function () {
+    var root = document.documentElement;
+    root.classList.add('js');
+    try {
+      var theme = localStorage.getItem('theme');
+      if (theme === 'light' || theme === 'dark') root.dataset.theme = theme;
+    } catch (e) {}
+  })();
 </script>
 
-<!-- For all browsers -->
-<link rel="stylesheet" href="{{ base_path }}/assets/css/main.css">
-
-<meta http-equiv="cleartype" content="on">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+{%- comment -%} The build time busts browser caches, so each deploy's CSS and JS load straight away. {%- endcomment %}
+{%- assign build = site.time | date: '%s' %}
+<link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}?v={{ build }}">
+<script src="{{ '/assets/js/site.js' | relative_url }}?v={{ build }}" defer></script>
+<script src="{{ '/assets/js/ambient.js' | relative_url }}?v={{ build }}" defer></script>

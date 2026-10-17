@@ -3,9 +3,6 @@ layout: archive
 title: "Patents"
 description: "Patents by Timothy Wong on machine learning for complex sensor data, utility usage analysis and detecting anomalies in energy consumption."
 permalink: /patents/
-author_profile: true
 ---
 
-{% for post in site.patents reversed %}
-  {% include archive-single-patent.html %}
-{% endfor %}
+{% include work.html only="patents" year_heading="h2" %}

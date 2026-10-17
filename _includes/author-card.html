@@ -1,0 +1,8 @@
+{%- comment -%} Photo, name and one-liner shown beside every page except home. The one-liner is site.author.bio. {%- endcomment -%}
+<aside class="author-card" aria-label="About the author">
+  <img class="author-card__photo" src="{{ '/images/tim-640.jpg' | relative_url }}" width="640" height="640" alt="">
+  <div class="author-card__text">
+    <a class="author-card__name" href="{{ '/' | relative_url }}">{{ site.name }}</a>
+    <p class="author-card__line">{{ site.author.bio }}</p>
+  </div>
+</aside>

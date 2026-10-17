@@ -1,0 +1,23 @@
+{%- comment -%}
+  Year-grouped list of one kind of work, for the section pages.
+    include.only          the collection label, e.g. "talks"
+    include.year_heading  heading level for the year groups (default h2)
+{%- endcomment -%}
+{%- assign items = site[include.only] | sort: "date" | reverse -%}
+{%- assign hy = include.year_heading | default: "h2" -%}
+{%- assign groups = items | group_by_exp: "i", "i.date | date: '%Y'" %}
+<div class="work-list">
+  {%- for g in groups %}
+  <section class="work-year">
+    <{{ hy }} class="work-year__label">{{ g.name }}</{{ hy }}>
+    <ol class="work-year__items">
+      {%- for item in g.items %}
+      <li class="work-item">
+        <a class="work-item__title" href="{{ item.url | relative_url }}">{{ item.title | strip }}</a>
+        <p class="work-item__meta">{% include work-meta.html item=item %}</p>
+      </li>
+      {%- endfor %}
+    </ol>
+  </section>
+  {%- endfor %}
+</div>

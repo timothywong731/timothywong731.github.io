@@ -1,0 +1,19 @@
+{%- comment -%} Key facts for a work item, as a definition list under its title. {%- endcomment -%}
+<dl class="facts">
+  {%- case page.collection -%}
+    {%- when "patents" %}
+  <div><dt>Filed</dt><dd><time datetime="{{ page.fileddate | date: '%Y-%m-%d' }}">{{ page.fileddate | date: "%-d %B %Y" }}</time></dd></div>
+  <div><dt>Reference</dt><dd>{{ page.filedref }}</dd></div>
+    {%- else %}
+  <div><dt>Date</dt><dd><time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: "%-d %B %Y" }}</time></dd></div>
+      {%- if page.type and page.collection != "tutorials" %}
+  <div><dt>Format</dt><dd>{{ page.type }}</dd></div>
+      {%- endif %}
+      {%- if page.venue %}
+  <div><dt>{% if page.collection == "publications" %}Published in{% else %}Venue{% endif %}</dt><dd>{{ page.venue }}</dd></div>
+      {%- endif %}
+      {%- if page.location %}
+  <div><dt>Location</dt><dd>{{ page.location }}</dd></div>
+      {%- endif %}
+  {%- endcase %}
+</dl>

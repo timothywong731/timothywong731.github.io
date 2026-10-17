@@ -2,6 +2,7 @@
 title: "Method of Utility Usage Analysis"
 collection: patents
 type: "Patent"
+date: 2017-07-03
 fileddate: 2017-07-03
 filedref: "EP 3425585 A1"
 ---

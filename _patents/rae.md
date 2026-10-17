@@ -2,6 +2,7 @@
 title: "Determining Operating State from Complex Sensor Data"
 collection: patents
 type: "Patent"
+date: 2017-10-26
 fileddate: 2017-10-26
 filedref: "PCT/GB2018/053090"
 ---

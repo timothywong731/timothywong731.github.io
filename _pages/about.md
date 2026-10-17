@@ -4,7 +4,7 @@ title: "Biography"
 seo_title: "Timothy Wong - Data Science, Machine Learning & AI Engineering"
 excerpt: "About me"
 description: "Timothy Wong: UK-based data science, machine learning and AI engineering professional. Chartered Statistician (CStat) and Chartered Engineer (CEng)."
-author_profile: true
+layout: home
 redirect_from: 
   - /about/
   - /about.html

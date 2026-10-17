@@ -1,0 +1,27 @@
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="site-name" href="{{ '/' | relative_url }}"{% if page.url == "/" %} aria-current="page"{% endif %}>{{ site.name }}</a>
+
+    <button class="icon-button nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      {% include icon.html name="menu" %}{% include icon.html name="close" %}<span>Menu</span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <ul>
+        {%- for link in site.data.navigation.main %}
+          {%- assign current = nil -%}
+          {%- if page.url == link.url -%}
+            {%- assign current = "page" -%}
+          {%- elsif page.url contains link.url or link.collection and page.collection == link.collection -%}
+            {%- assign current = "true" -%}
+          {%- endif %}
+        <li><a href="{{ link.url | relative_url }}"{% if current %} aria-current="{{ current }}"{% endif %}>{{ link.title }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+
+    <button class="icon-button theme-toggle" type="button" aria-label="Switch to dark theme" data-theme-toggle>
+      {% include icon.html name="moon" %}{% include icon.html name="sun" %}
+    </button>
+  </div>
+</header>

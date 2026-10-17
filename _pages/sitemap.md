@@ -1,32 +1,29 @@
 ---
 layout: archive
 title: "Sitemap"
+description: "Every page on the site. There is also an XML sitemap for search engines and an llms.txt summary for AI tools."
 permalink: /sitemap/
-author_profile: true
 ---
 
-{% include base_path %}
+<div class="prose sitemap">
+  <h2>Pages</h2>
+  <ul>
+    {%- assign pages = site.pages | where_exp: "p", "p.title != nil" | where_exp: "p", "p.sitemap != false" | sort: "title" %}
+    {%- for p in pages %}
+    <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+    {%- endfor %}
+  </ul>
 
-A list of all the pages found on the site. For you robots out there is an [XML version]({{ base_path }}/sitemap.xml) and an [llms.txt]({{ base_path }}/llms.txt) available for digesting as well.
+  {%- assign kinds = site.data.navigation.main | where_exp: "k", "k.collection != nil" %}
+  {%- for k in kinds %}
+  <h2>{{ k.title }}</h2>
+  <ul>
+    {%- assign docs = site[k.collection] | sort: "date" | reverse %}
+    {%- for d in docs %}
+    <li><a href="{{ d.url | relative_url }}">{{ d.title | strip }}</a></li>
+    {%- endfor %}
+  </ul>
+  {%- endfor %}
 
-<h2>Pages</h2>
-{% for post in site.pages %}
-  {% include archive-single.html %}
-{% endfor %}
-
-{% capture written_label %}'None'{% endcapture %}
-
-{% for collection in site.collections %}
-{% unless collection.output == false or collection.label == "posts" %}
-  {% capture label %}{{ collection.label }}{% endcapture %}
-  {% if label != written_label %}
-  <h2>{{ label }}</h2>
-  {% capture written_label %}{{ label }}{% endcapture %}
-  {% endif %}
-{% endunless %}
-{% for post in collection.docs %}
-  {% unless collection.output == false or collection.label == "posts" %}
-  {% include archive-single.html %}
-  {% endunless %}
-{% endfor %}
-{% endfor %}
+  <p><a href="{{ '/sitemap.xml' | relative_url }}">XML sitemap</a> and <a href="{{ '/llms.txt' | relative_url }}">llms.txt</a></p>
+</div>

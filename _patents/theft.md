@@ -2,6 +2,7 @@
 title: "Method and system for detecting anomalies in energy consumption"
 collection: patents
 type: "Patent"
+date: 2017-04-28
 fileddate: 2017-04-28
 filedref: "PCT/GB2018/051140"
 ---

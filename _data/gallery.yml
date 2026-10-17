@@ -1,3 +1,5 @@
+# Workshop photos for the gallery page.
+# Thumbnails live in /images/gallery/thumbs/ with the same file name (shorter side 800px).
 - image: "/images/gallery/20241209_150644.jpg"
   description: "Tim's wood machining workshop."
 - image: "/images/gallery/20241214_175737.jpg"

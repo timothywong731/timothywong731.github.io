@@ -72,27 +72,6 @@
     setTimeout(() => { if (label) label.textContent = original; }, 2000);
   });
 
-  // Home project strip: native scroll-snap does the work; the buttons page through it when it overflows.
-  for (const strip of document.querySelectorAll('[data-strip]')) {
-    const track = strip.querySelector('.tiles');
-    const nav = strip.querySelector('.project-strip__nav');
-    const prev = nav.querySelector('[data-prev]');
-    const next = nav.querySelector('[data-next]');
-    const still = matchMedia('(prefers-reduced-motion: reduce)');
-    const update = () => {
-      const max = track.scrollWidth - track.clientWidth;
-      nav.hidden = max <= 1;
-      prev.disabled = track.scrollLeft <= 1;
-      next.disabled = track.scrollLeft >= max - 1;
-    };
-    const page = (dir) => track.scrollBy({ left: dir * track.clientWidth * 0.8, behavior: still.matches ? 'auto' : 'smooth' });
-    prev.addEventListener('click', () => page(-1));
-    next.addEventListener('click', () => page(1));
-    track.addEventListener('scroll', update, { passive: true });
-    addEventListener('resize', update);
-    update();
-  }
-
   // Gallery lightbox, using the native <dialog> for focus trapping and Escape to close.
   const lightbox = document.querySelector('.lightbox');
   if (lightbox && typeof lightbox.showModal === 'function') {

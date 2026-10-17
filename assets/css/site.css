@@ -417,7 +417,7 @@ main:focus { outline: none; }
     grid-template-columns: minmax(0, 1fr) 17rem;
     gap: var(--space-8);
     align-items: center;
-    /* Leaves room for the top of the project strip on laptop-height screens. */
+    /* Leaves room for the top of the project index on laptop-height screens. */
     min-height: calc(100vh - 4.25rem - 16rem);
     padding-block: var(--space-8) var(--space-6);
   }
@@ -587,71 +587,32 @@ main:focus { outline: none; }
   }
 }
 
-/* ---------- Home: project strip ---------- */
-/* Builds on the project tiles above, so it comes after them. Small tiles in one native scroll-snap row, kept quiet so the hero stays the focus. */
+/* ---------- Home: project index ---------- */
+/* Every project as text, all visible at once. Builds on the project tiles above, so it comes after them. */
 
-.project-strip { padding-bottom: var(--space-4); }
+.home-projects { padding-bottom: var(--space-4); }
 
-.project-strip__head {
+.home-projects__head {
   display: flex;
-  align-items: center;
-  gap: var(--space-2) var(--space-5);
-  margin-bottom: var(--space-3);
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-bottom: var(--space-5);
   padding-top: var(--space-5);
   border-top: 1px solid var(--rule);
 }
 
-.project-strip__head h2 {
-  margin-right: auto;
-  font-size: var(--step-1);
-  font-weight: 600;
+.home-projects__head h2 { font-size: var(--step-1); font-weight: 600; }
+.home-projects__head a { font-size: var(--step--1); }
+
+.tiles--index {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  gap: var(--space-5) var(--space-7);
 }
 
-.project-strip__all { font-size: var(--step--1); }
-
-.project-strip__nav { display: flex; gap: var(--space-2); }
-.project-strip__nav[hidden] { display: none; }
-
-.icon-button:disabled { opacity: 0.38; cursor: default; pointer-events: none; }
-
-/* The padding gives focus rings and the stretched links room inside the scroller's clip. */
-.tiles--strip {
-  grid-template-columns: none;
-  grid-auto-flow: column;
-  grid-auto-columns: 13rem;
-  gap: var(--space-5);
-  margin: calc(-1 * var(--space-3));
-  padding: var(--space-3);
-  overflow-x: auto;
-  overflow-y: hidden;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: var(--space-3);
-  scrollbar-width: thin;
-  scrollbar-color: var(--rule-strong) transparent;
-}
-
-/* With JavaScript the buttons replace the scrollbar; without it the scrollbar stays. */
-.js .tiles--strip { scrollbar-width: none; }
-.js .tiles--strip::-webkit-scrollbar { display: none; }
-
-.tiles--strip .tile { scroll-snap-align: start; }
-.tiles--strip .tile__media { margin-bottom: var(--space-3); }
-.tiles--strip .tile__title { font-size: 1rem; }
-.tiles--strip .tile__meta { margin-top: var(--space-1); }
-.tiles--strip .tile__name { inset: auto var(--space-3) var(--space-2); font-size: var(--step-1); }
-
-/* Phones: the row runs to the screen edges and the next tile peeks in, so it reads as swipeable. */
-@media (max-width: 47.99rem) {
-  .tiles--strip {
-    grid-auto-columns: 10.5rem;
-    gap: var(--space-4);
-    margin-inline: calc(-1 * var(--gutter));
-    padding-inline: var(--gutter);
-    scroll-padding-inline: var(--gutter);
-    scrollbar-width: none;
-  }
-}
+.tiles--index .tile__title { font-size: 1.0625rem; }
+.tiles--index .tile__summary { margin-top: var(--space-1); font-size: var(--step--1); }
+.tiles--index .tile__meta { margin-top: var(--space-1); }
 
 /* ---------- Author card (every page except home) ---------- */
 

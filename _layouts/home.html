@@ -16,18 +16,14 @@ layout: default
 </section>
 
 {%- assign projects = site.projects | sort: "date" | reverse %}
-<section class="project-strip wrap" aria-labelledby="projects-title" data-strip>
-  <div class="project-strip__head">
+<section class="home-projects wrap" aria-labelledby="projects-title">
+  <div class="home-projects__head">
     <h2 id="projects-title">Projects</h2>
-    <a class="project-strip__all" href="{{ '/projects/' | relative_url }}">All projects</a>
-    <div class="project-strip__nav" hidden>
-      <button class="icon-button" type="button" data-prev aria-label="Previous projects">{% include icon.html name="prev" %}</button>
-      <button class="icon-button" type="button" data-next aria-label="More projects">{% include icon.html name="next" %}</button>
-    </div>
+    <a href="{{ '/projects/' | relative_url }}">All projects</a>
   </div>
-  <ul class="tiles tiles--strip">
+  <ul class="tiles tiles--index">
     {%- for p in projects %}
-    {% include project-tile.html p=p heading="h3" summary="false" %}
+    {% include project-tile.html p=p heading="h3" media="false" %}
     {%- endfor %}
   </ul>
 </section>

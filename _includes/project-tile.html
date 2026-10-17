@@ -1,8 +1,9 @@
 {%- comment -%}
-  One project tile, for the Projects page and the home page strip.
+  One project tile, for the Projects page and the home page index.
     include.p        the project document
     include.heading  heading level for its title (default h2)
     include.summary  "false" to leave out the one-line summary
+    include.media    "false" to leave out the picture
 {%- endcomment -%}
 {%- assign p = include.p -%}
 {%- assign h = include.heading | default: "h2" %}
@@ -14,6 +15,7 @@
   <p class="tile__summary">{{ p.excerpt | strip_html | strip }}</p>
   {%- endunless %}
   <p class="tile__meta">{{ p.date | date: "%Y" }}, {{ p.language }}</p>
+  {%- unless include.media == "false" %}
   <div class="tile__media">
     {%- if p.thumbnail %}
     <img src="{{ p.thumbnail | relative_url }}" alt="" width="960" height="600" loading="lazy">
@@ -22,4 +24,5 @@
     <span class="tile__name" aria-hidden="true">{{ p.title }}</span>
     {%- endif %}
   </div>
+  {%- endunless %}
 </li>

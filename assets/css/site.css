@@ -417,9 +417,8 @@ main:focus { outline: none; }
     grid-template-columns: minmax(0, 1fr) 17rem;
     gap: var(--space-8);
     align-items: center;
-    /* Leaves room for the top of the project index on laptop-height screens. */
-    min-height: calc(100vh - 4.25rem - 16rem);
-    padding-block: var(--space-8) var(--space-6);
+    min-height: calc(100vh - 4.25rem - 14rem);
+    padding-block: var(--space-9) var(--space-8);
   }
   .hero__portrait {
     order: 0;
@@ -586,33 +585,6 @@ main:focus { outline: none; }
     text-underline-offset: 0.2em;
   }
 }
-
-/* ---------- Home: project index ---------- */
-/* Every project as text, all visible at once. Builds on the project tiles above, so it comes after them. */
-
-.home-projects { padding-bottom: var(--space-4); }
-
-.home-projects__head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-5);
-  margin-bottom: var(--space-5);
-  padding-top: var(--space-5);
-  border-top: 1px solid var(--rule);
-}
-
-.home-projects__head h2 { font-size: var(--step-1); font-weight: 600; }
-.home-projects__head a { font-size: var(--step--1); }
-
-.tiles--index {
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
-  gap: var(--space-5) var(--space-7);
-}
-
-.tiles--index .tile__title { font-size: 1.0625rem; }
-.tiles--index .tile__summary { margin-top: var(--space-1); font-size: var(--step--1); }
-.tiles--index .tile__meta { margin-top: var(--space-1); }
 
 /* ---------- Author card (every page except home) ---------- */
 
@@ -1042,7 +1014,7 @@ main:focus { outline: none; }
   .hero__tagline { margin-top: var(--space-3); font-size: 1.375rem; }
   .hero__bio { margin-top: var(--space-4); }
   .hero__actions { margin-top: var(--space-5); }
-  .hero__actions .button { flex: 1 1 0; justify-content: center; }
+  .hero__actions .button { flex: 1 1 auto; justify-content: center; }
   .social-links--hero { margin-top: var(--space-3); gap: 0 var(--space-4); }
 
   /* Gallery: two columns, captions clamped to three lines (the viewer shows them in full). */

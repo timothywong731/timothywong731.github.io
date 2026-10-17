@@ -11,6 +11,9 @@
   const labelThemeToggle = () => {
     const next = activeTheme() === 'dark' ? 'light' : 'dark';
     themeToggle?.setAttribute('aria-label', `Switch to ${next} theme`);
+    // Android Chrome tints its address bar with theme-color; follow the theme the visitor picked.
+    const paper = getComputedStyle(root).getPropertyValue('--paper').trim();
+    if (paper) for (const meta of document.querySelectorAll('meta[name="theme-color"]')) meta.content = paper;
   };
   themeToggle?.addEventListener('click', () => {
     const next = activeTheme() === 'dark' ? 'light' : 'dark';
@@ -35,6 +38,18 @@
       navToggle.focus();
     }
   });
+
+  // Phones and tablets: the sticky header slides away while scrolling down and returns on any scroll up.
+  const header = document.querySelector('.site-header');
+  const compact = matchMedia('(max-width: 63.99rem)');
+  let lastY = scrollY;
+  addEventListener('scroll', () => {
+    const y = scrollY, dy = y - lastY;
+    if (Math.abs(dy) < 6) return;                       // ignore jitter from momentum scrolling
+    const menuOpen = navToggle?.getAttribute('aria-expanded') === 'true';
+    header.classList.toggle('is-hidden', compact.matches && !menuOpen && dy > 0 && y > header.offsetHeight);
+    lastY = y;
+  }, { passive: true });
 
   // Copy buttons: data-copy="url" copies the page address, otherwise a selector for the text to copy.
   document.addEventListener('click', async (e) => {
@@ -86,6 +101,18 @@
     lightbox.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') show(index - 1);
       if (e.key === 'ArrowRight') show(index + 1);
+    });
+    // Touch: swipe left or right to change photo, swipe down to close. Pinch-zoom still works (touch-action in CSS).
+    const figure = lightbox.querySelector('.lightbox__figure');
+    let start = null;
+    figure.addEventListener('pointerdown', (e) => { if (e.pointerType !== 'mouse' && e.isPrimary) start = { x: e.clientX, y: e.clientY }; });
+    figure.addEventListener('pointercancel', () => { start = null; });
+    figure.addEventListener('pointerup', (e) => {
+      if (!start) return;
+      const dx = e.clientX - start.x, dy = e.clientY - start.y;
+      start = null;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(index + (dx < 0 ? 1 : -1));
+      else if (dy > 90 && dy > Math.abs(dx)) lightbox.close();
     });
     // A click on the dark backdrop (the dialog itself, outside the figure and controls) closes it.
     lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.close(); });

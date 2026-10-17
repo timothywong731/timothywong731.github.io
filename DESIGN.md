@@ -211,7 +211,7 @@ Sentence case everywhere. No all-caps labels, no letter-spaced eyebrows above he
 - **Home:** from 64rem up, the introduction and a 17rem portrait sit side by side, vertically centred, and fill the first screen. Below 64rem the portrait shrinks to a 7rem square above the name.
 - **Inner pages:** from 64rem up, a 13rem author card column sits to the left of the content, 72px apart, and stays in view as you scroll. Below 64rem the card becomes a one-row strip above the page title.
 - **Section pages:** an 8.5rem year column beside the list of items. Below 48rem the year sits above its items.
-- **Breakpoints:** 48rem (year groups stack) and 64rem (two-column hero, author card column, inline nav instead of the menu button).
+- **Breakpoints:** 48rem (year groups stack, phone hero, two-column gallery) and 64rem (two-column hero, author card column, inline nav instead of the menu button, static header).
 
 ```
 ┌ Timothy Wong ──── Talks Publications Patents Tutorials Project Teaching Gallery ◐ ┐
@@ -282,6 +282,19 @@ The glyph outlines come from the Google Fonts subset `css2?family=Archivo:wdth,w
 - **Determinism:** each page has its own seed (731 mixed with the URL path), so a page looks the same on every visit, but pages differ from each other.
 - **Accessibility and cost:** with `prefers-reduced-motion` or Save-Data, the system settles off-screen and paints one still frame. The browser pauses it in background tabs. The device pixel ratio is capped at 2.
 - **Tuning:** all constants are in `DEFAULTS` at the top of the file. The full philosophy and a seed-explorer viewer were produced with the algorithmic-art skill. If you rebuild the viewer, inline this file so both run the same algorithm.
+
+### Phones and touch
+
+The site is checked at 412×915, the CSS viewport of a Google Pixel 7 or 8, as well as at 375px and on desktop.
+
+- **Home first screen:** on phones the hero tightens (5.5rem portrait, smaller gaps, a 1.375rem tagline), so the photo, name, tagline, bio, both buttons and every profile link fit on one 915px-tall screen. The two buttons share the row equally.
+- **Header:** below 64rem it is sticky on a translucent, blurred paper background. It slides away while you scroll down and returns on any scroll up, or whenever focus is inside it, and stays put while the menu is open. Android has no tap-the-status-bar-to-top gesture, so this keeps navigation one flick away.
+- **Tap targets:** at least 48px for every control on coarse pointers (Android's 48dp guideline), and 44px elsewhere. This covers the header name, back links, profile links, share buttons and footer links. Each item in a work list is tappable across its whole row via a stretched link on the title.
+- **Feedback:** no grey Android tap flash. Buttons scale to 97% while pressed, and work-list rows get a wash. Hover-only effects such as the gallery zoom are limited to `(hover: hover)` so they don't stick after a tap.
+- **Gallery:** two columns below 48rem, with captions clamped to three lines (the viewer shows them in full). In the viewer you swipe left or right to change photo and down to close, pinch-zoom still works, and the page behind is scroll-locked.
+- **Ambient background:** 60% strength below 768px, where text spans the full width. The canvas is 100vh, the large viewport, so the Chrome address bar showing or hiding never resizes it.
+- **Android Chrome:** the `theme-color` metas follow the theme toggle, so the address bar matches the page. The manifest includes a maskable 512px icon, full-bleed navy with TW inside the 80% safe zone, for adaptive home-screen icons.
+- **Long text:** paragraphs and citations use `overflow-wrap: break-word`, so long URLs never widen the page.
 
 ### Motion
 

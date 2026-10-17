@@ -81,7 +81,10 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
+
+a, button { touch-action: manipulation; }
 
 body {
   margin: 0;
@@ -158,10 +161,12 @@ main:focus { outline: none; }
 
 .ambient {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
   z-index: -1;
   width: 100%;
-  height: 100%;
+  /* 100vh is the large viewport on mobile, so the address bar showing or hiding never resizes the canvas. */
+  height: 100vh;
   pointer-events: none;
   /* Strongest at the top right, fading towards the reading column on the left. */
   -webkit-mask-image: radial-gradient(135% 115% at 100% 0%, #000 22%, rgba(0, 0, 0, 0.45) 58%, rgba(0, 0, 0, 0.16) 100%);
@@ -238,6 +243,9 @@ main:focus { outline: none; }
 }
 
 .site-name {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   margin-right: auto;
   font-weight: 700;
   font-stretch: 112%;
@@ -444,6 +452,17 @@ main:focus { outline: none; }
   list-style: none;
 }
 
+.work-item { position: relative; }
+
+.work-item__title::after {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--space-2)) calc(-1 * var(--space-3));
+  border-radius: 6px;
+}
+
+.work-item__title:active::after { background: var(--wash); }
+
 .work-item__title {
   font-size: 1.125rem;
   font-weight: 600;
@@ -577,6 +596,9 @@ main:focus { outline: none; }
 }
 
 .entry__back a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--muted);
   font-size: var(--step--1);
   font-weight: 500;
@@ -797,7 +819,9 @@ main:focus { outline: none; }
   transition: transform 300ms var(--ease);
 }
 
-.gallery__open:hover img { transform: scale(1.03); }
+@media (hover: hover) {
+  .gallery__open:hover img { transform: scale(1.03); }
+}
 
 .gallery__caption {
   margin-top: var(--space-2);
@@ -867,6 +891,68 @@ main:focus { outline: none; }
 }
 
 .lightbox__close { margin-left: var(--space-5); }
+
+/* ---------- Phones and touch ---------- */
+
+/* Below 64rem the header hides while you scroll down and comes back as soon as you scroll up (site.js). */
+@media (max-width: 63.99rem) {
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--paper);
+    background: color-mix(in srgb, var(--paper) 90%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition: transform 220ms var(--ease);
+  }
+  .site-header.is-hidden { transform: translateY(-100%); }
+  .site-header:focus-within { transform: none; }
+}
+
+@media (max-width: 47.99rem) {
+  /* Home: tighter hero so the buttons and profile links fit on the first screen. */
+  .hero { gap: var(--space-4); padding-block: var(--space-5) var(--space-4); }
+  .hero__portrait { width: 5.5rem; }
+  .hero__tagline { margin-top: var(--space-3); font-size: 1.375rem; }
+  .hero__bio { margin-top: var(--space-4); }
+  .hero__actions { margin-top: var(--space-5); }
+  .hero__actions .button { flex: 1 1 0; justify-content: center; }
+  .social-links--hero { margin-top: var(--space-3); gap: 0 var(--space-4); }
+
+  /* Gallery: two columns, captions clamped to three lines (the viewer shows them in full). */
+  .prose .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5) var(--space-3); }
+  .gallery__caption {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    font-size: 0.8125rem;
+  }
+
+  .page-head, .entry__head { padding-top: var(--space-5); }
+}
+
+/* Long URLs in abstracts and references wrap instead of widening the page. */
+.prose p, .citation__text { overflow-wrap: break-word; }
+
+/* Touch screens: 48dp targets (Android's guideline) and visible press feedback. */
+@media (pointer: coarse) {
+  .button, .btn, .icon-button, .share__links a, .share__links button { min-height: 48px; }
+  .icon-button { min-width: 48px; }
+  .site-name, .entry__back a, .social-links a { min-height: 48px; }
+  .social-links a { min-width: 48px; }
+  .site-footer__meta a, .site-footer__meta span { display: inline-flex; align-items: center; min-height: 48px; }
+  .site-footer__meta { gap: 0 var(--space-5); }
+  .sitemap li a { display: inline-flex; align-items: center; min-height: 44px; }
+  .button:active, .btn:active, .share__links a:active, .share__links button:active, .icon-button:active { transform: scale(0.97); }
+  .button, .btn, .share__links a, .share__links button, .icon-button { transition: transform 120ms var(--ease), background-color 150ms var(--ease); }
+}
+
+/* While the photo viewer is open, the page behind it stays put. */
+html:has(.lightbox[open]) { overflow: hidden; }
+
+.lightbox__figure { touch-action: pinch-zoom; }
 
 /* ---------- Motion ---------- */
 

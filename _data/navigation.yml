@@ -1,10 +1,7 @@
 # Site navigation, in menu order.
-# Items with a `collection` are also the kinds of work shown on the home page timeline and index:
+# Items with a `collection` are the kinds of work listed on their section pages:
 #   singular  the label used for one item ("Talk at EARL 2024")
 main:
-  - title: "Projects"
-    url: /projects/
-
   - title: "Talks"
     url: /talks/
     collection: talks
@@ -24,6 +21,9 @@ main:
     url: /tutorials/
     collection: tutorials
     singular: "Tutorial"
+
+  - title: "Project"
+    url: /projects/
 
   - title: "Teaching"
     url: /teaching/

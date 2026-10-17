@@ -36,40 +36,6 @@
     }
   });
 
-  // Work index: filter the list and dim timeline rows by type. The choice is kept in ?type= so it can be shared.
-  for (const work of document.querySelectorAll('[data-work]')) {
-    const chips = [...work.querySelectorAll('[data-filter]')];
-    if (!chips.length) continue;
-    const kinds = new Set(chips.map((c) => c.dataset.filter));
-
-    const apply = (kind, { updateUrl = true } = {}) => {
-      if (!kinds.has(kind)) kind = 'all';
-      for (const chip of chips) chip.setAttribute('aria-pressed', String(chip.dataset.filter === kind));
-      let shown = 0;
-      for (const item of work.querySelectorAll('.work-item')) {
-        const visible = kind === 'all' || item.dataset.kind === kind;
-        item.hidden = !visible;
-        if (visible) shown++;
-      }
-      for (const year of work.querySelectorAll('.work-year')) {
-        year.hidden = !year.querySelector('.work-item:not([hidden])');
-      }
-      for (const row of work.querySelectorAll('.timeline__row')) {
-        row.classList.toggle('is-dimmed', kind !== 'all' && row.dataset.kind !== kind);
-      }
-      if (updateUrl) {
-        const url = new URL(location.href);
-        if (kind === 'all') url.searchParams.delete('type'); else url.searchParams.set('type', kind);
-        history.replaceState(null, '', url);
-        announce(`Showing ${shown} ${shown === 1 ? 'item' : 'items'}`);
-      }
-    };
-
-    for (const chip of chips) chip.addEventListener('click', () => apply(chip.dataset.filter));
-    const initial = new URLSearchParams(location.search).get('type');
-    if (initial) apply(initial, { updateUrl: false });
-  }
-
   // Copy buttons: data-copy="url" copies the page address, otherwise a selector for the text to copy.
   document.addEventListener('click', async (e) => {
     const button = e.target.closest('[data-copy]');

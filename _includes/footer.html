@@ -1,10 +1,8 @@
 <footer class="site-footer">
   <div class="wrap site-footer__inner">
-    <div class="site-footer__id">
-      <p class="site-footer__name">{{ site.name }}</p>
-      <p class="site-footer__tagline">{{ site.tagline }}</p>
-    </div>
+    {%- unless page.layout == "home" %}
     {% include social-links.html class="social-links--footer" %}
+    {%- endunless %}
     <p class="site-footer__meta">
       <span>&copy; {{ site.time | date: "%Y" }} {{ site.name }}</span>
       <a href="{{ '/sitemap/' | relative_url }}">Sitemap</a>

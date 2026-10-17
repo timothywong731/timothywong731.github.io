@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: Timothy Wong
-description: Personal portfolio of a data science, machine learning and AI engineering professional. Navy ink on cool paper, one typeface with a variable width axis, and a timeline of work as the signature element.
+description: Personal portfolio of a data science, machine learning and AI engineering professional. Navy ink on cool paper, one typeface with a variable width axis, and a home page that is an introduction and nothing more.
 colors:
   primary: "#16213D"
   paper: "#F6F7F9"
@@ -42,13 +42,6 @@ typography:
     lineHeight: 1.08
     letterSpacing: -0.03em
     fontVariation: '"wdth" 112'
-  section-title:
-    fontFamily: Archivo
-    fontSize: 2.25rem
-    fontWeight: 650
-    lineHeight: 1.15
-    letterSpacing: -0.02em
-    fontVariation: '"wdth" 112'
   heading:
     fontFamily: Archivo
     fontSize: 1.625rem
@@ -84,7 +77,7 @@ rounded:
   s: 4px
   control: 6px
   m: 8px
-  pill: 999px
+  icon: 112px
 spacing:
   "1": 4px
   "2": 8px
@@ -126,12 +119,18 @@ components:
   control-border-dark:
     backgroundColor: "{colors.rule-strong-dark}"
     width: 1px
-  chip-dark:
-    backgroundColor: "{colors.surface-dark}"
-    textColor: "{colors.ink-dark}"
-  timeline-mark-dark:
+  focus-ring:
+    backgroundColor: "{colors.data}"
+    width: 2px
+  focus-ring-dark:
     backgroundColor: "{colors.data-dark}"
-    size: 11px
+    width: 2px
+  code-block:
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.s}"
+    padding: 16px
+  code-block-dark:
+    backgroundColor: "{colors.surface-dark}"
   button-primary:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.paper}"
@@ -149,29 +148,15 @@ components:
     rounded: "{rounded.control}"
     padding: 10px 18px
     height: 44px
-  chip:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    typography: "{typography.small}"
-    rounded: "{rounded.pill}"
-    padding: 0 16px
-    height: 44px
-  chip-selected:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper}"
-  timeline-mark:
-    backgroundColor: "{colors.data}"
-    size: 11px
-  timeline-tooltip:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper}"
-    typography: "{typography.caption}"
-    rounded: "{rounded.control}"
-    padding: 8px 12px
   photo:
     rounded: "{rounded.s}"
   portrait:
     rounded: "{rounded.m}"
+  site-icon:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.paper}"
+    rounded: "{rounded.icon}"
+    size: 512px
 ---
 
 # Timothy Wong design system
@@ -180,39 +165,37 @@ The site's styles live in `assets/css/site.css`, and its tokens are CSS custom p
 
 ## Overview
 
-The site is a portfolio for IT professionals who arrive by searching Timothy's name or a topic he has worked on. In ten seconds a visitor should know who he is, what he does ("Data science, machine learning and AI engineering."), and that there is a decade of evidence behind it.
+The site is a portfolio for IT professionals who arrive by searching Timothy's name or a topic he has worked on. In ten seconds a visitor should know who he is and what he does ("Data science, machine learning and AI engineering."), and have an obvious next step.
 
-The personality is that of a Chartered Statistician and Chartered Engineer: exact, calm and quietly confident. Nothing is decorated. The one expressive moment is the **work timeline** on the home page, a strip plot of every talk, paper, patent, tutorial and teaching session since 2016. It is real data, drawn the way a statistician would draw it, and it doubles as the filter for the list below it.
+The home page is deliberately just an introduction: name, tagline, bio, two calls to action (talks and publications), profile links and a portrait. Everything else is one click away in the navigation.
 
-Two choices give the site its voice:
+The personality is that of a Chartered Statistician and Chartered Engineer: exact, calm and quietly confident. Nothing is decorated. Two choices give the site its voice:
 
-- **One typeface, two widths.** Archivo's width axis runs from 62% to 125%. Headings use the expanded cut (112% to 125%), which reads as engineered and confident. Body text uses the normal width.
-- **Navy ink.** The text colour is taken from the navy suit in Timothy's portrait, not a generic near-black, so the site and the photo belong together.
+- **One typeface, two widths.** Archivo's width axis runs from 62% to 125%. The name and page titles use the expanded cut (112% to 125%), which reads as engineered and confident. Body text uses the normal width.
+- **Navy ink.** The text colour is taken from the navy suit in Timothy's portrait, not a generic near-black, so the site and the photo belong together. The site icon uses the same navy.
 
 ## Colors
 
-The palette is neutral surfaces, navy ink and a single data blue. Light and dark themes are designed as a pair: the dark values are chosen for the dark surface and validated against it, not inverted.
+The palette is neutral surfaces, navy ink and a single blue for links and focus. Light and dark themes are designed as a pair: the dark values are chosen for the dark surface and checked against it, not inverted.
 
-- **Paper (#F6F7F9 / #0E1424):** the page background. Light is a cool, barely-grey white. Dark is the deep night navy of the TIM-360M artwork.
-- **Surface (#FFFFFF / #151C2F):** raised controls such as filter chips. It is used sparingly, because the site has no cards.
-- **Ink / primary (#16213D / #E9ECF3):** headings, body text, primary buttons and selected chips. It reaches 14.9:1 on paper.
-- **Ink 2 (#46506A / #B9C1D2):** taglines, secondary copy and navigation (7.5:1).
-- **Muted (#5D6680 / #929CB2):** metadata, captions and axis labels. At 5.3:1 it still passes AA for small text.
-- **Rule (#DCE0E7 / #2A3450) and Rule strong (#C3C9D5 / #3B4766):** hairlines between rows, timeline gridlines and quiet button borders.
-- **Data (#2A78D6 / #3987E5):** the only hue. It marks data points, link underlines, the current-page underline and focus rings. Both steps passed the dataviz palette validator against their own surfaces (lightness band, chroma floor, at least 3:1 contrast). It is never used for body text or as a button fill: white on data is 4.4:1, below AA.
-
-The timeline uses a single series colour because each row is labelled directly. Colour never carries identity on its own.
+- **Paper (#F6F7F9 / #0E1424):** the page background. Light is a cool, barely-grey white. Dark is a deep night navy.
+- **Surface (#FFFFFF / #151C2F):** code blocks. It is used sparingly, because the site has no cards.
+- **Ink / primary (#16213D / #E9ECF3):** headings, body text and primary buttons. It reaches 14.9:1 on paper.
+- **Ink 2 (#46506A / #B9C1D2):** the tagline, secondary copy and navigation (7.5:1).
+- **Muted (#5D6680 / #929CB2):** metadata, captions and the footer line. At 5.3:1 it still passes AA for small text.
+- **Rule (#DCE0E7 / #2A3450) and Rule strong (#C3C9D5 / #3B4766):** hairlines between rows and quiet button borders.
+- **Data (#2A78D6 / #3987E5):** the only hue. It marks link underlines, the current-page underline and focus rings. It is never used for body text or as a button fill: white on data is 4.4:1, below AA.
 
 ## Typography
 
 Archivo (Google Fonts, variable: `wdth` 62–125, `wght` 100–900) is the only typeface. Monospace appears only inside code blocks.
 
 - **Display:** the name on the home page, at 125% width and weight 720, set tight (-0.035em, line-height 0.95). It sizes fluidly from 2.75rem to 5.25rem.
-- **Page title:** the section page and page H1s, at 112% width and weight 700, on the same fluid scale.
+- **Page title:** section and page H1s, at 112% width and weight 700, on the same fluid scale.
 - **Entry title:** H1s for talks, papers and patents, whose titles are long. These are one step down (2rem to 3.25rem) and capped at 24ch.
-- **Section title:** home page H2s at 2.25rem and 112% width.
-- **Body:** 17px, line-height 1.6. Prose measure is capped at 66ch.
-- **Small and caption:** metadata, chips and the timeline, at 14px and 13px. Axis years and counts use tabular figures so they line up.
+- **Tagline:** 1.625rem, weight 450, in Ink 2.
+- **Body:** 17px, line-height 1.6. Prose measure is capped at 66ch, and the home bio at 62ch.
+- **Small and caption:** metadata, buttons and fact labels, at 14px and 13px.
 
 Sentence case everywhere. No all-caps labels, no letter-spaced eyebrows above headings.
 
@@ -220,80 +203,83 @@ Sentence case everywhere. No all-caps labels, no letter-spaced eyebrows above he
 
 - **Container:** max 74rem (1184px), with gutters that scale from 16px to 40px (`clamp(1rem, 4vw, 2.5rem)`).
 - **Alignment:** everything is left-aligned to a single edge. Nothing is centred except the lightbox caption.
-- **Rhythm:** spacing comes from a 4px-based scale (4, 8, 12, 16, 24, 32, 48, 72, 104). Sections are 72px apart and the footer sits 104px below content.
-- **Label column:** the timeline row labels and the year labels in the work list share one 8.5rem column, so the chart and the list read as one table.
-- **Breakpoints:** 48rem, where the timeline labels move above their tracks and year groups stack, and 64rem, where the hero gains its portrait column, the nav becomes a menu below it, and the workshop section splits into two columns.
+- **Rhythm:** spacing comes from a 4px-based scale (4, 8, 12, 16, 24, 32, 48, 72, 104). The footer sits 104px below content.
+- **Home:** from 64rem up, the introduction and a 17rem portrait sit side by side, vertically centred, and fill the first screen. Below 64rem the portrait shrinks to a 7rem square above the name.
+- **Section pages:** an 8.5rem year column beside the list of items. Below 48rem the year sits above its items.
+- **Breakpoints:** 48rem (year groups stack) and 64rem (two-column hero, inline nav instead of the menu button).
 
 ```
-┌ Timothy Wong ─────────── Projects Talks Publications … ◐ ┐
-│                                                          │
-│  Timothy Wong                                  ┌──────┐  │
-│  Data science, machine learning and AI eng.    │ photo│  │
-│  Bio paragraph (62ch)                          │      │  │
-│  LinkedIn  GitHub  Hugging Face  ORCID  X      └──────┘  │
-│                                                          │
-│  Work since 2016                                         │
-│  (All 22) (Talks 11) (Publications 2) …                  │
-│  Talks        │ ·  ·· ···  ·      │     ·      ·         │
-│  Publications │       ·           │          ·           │
-│               2016 … 2026                                │
-│  2026  Agentic AI Systems for Cloud Migration …          │
-│        Talk at EARL 2026, Brighton, United Kingdom       │
-│                                                          │
-│  Wood carving and CNC            [ ][ ][ ][ ]            │
-└──────────────────────────────────────────────────────────┘
+┌ Timothy Wong ──── Talks Publications Patents Tutorials Project Teaching Gallery ◐ ┐
+│                                                                                     │
+│  Timothy Wong                                                     ┌──────────┐      │
+│  Data science, machine learning and AI engineering.               │          │      │
+│                                                                   │ portrait │      │
+│  Bio paragraph (62ch)                                             │          │      │
+│                                                                   └──────────┘      │
+│  [ View talks ]  [ View publications ]                                              │
+│  LinkedIn  GitHub  Hugging Face  ORCID  X  Ollama                                   │
+│                                                                                     │
+├─────────────────────────────────────────────────────────────────────────────────────┤
+│  © 2026 Timothy Wong   Sitemap   llms.txt                                           │
+└─────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ## Elevation & Depth
 
-The site is flat. Hierarchy comes from type size, width and weight, and from hairline rules. There are no drop shadows on content, and no cards. Two things sit above the page:
-
-- **Timeline tooltip:** an ink-filled label above the hovered mark.
-- **Lightbox:** a native `<dialog>` over a 92% navy scrim.
-
-Data marks carry a 2px ring in the paper colour so overlapping points stay distinct.
+The site is flat. Hierarchy comes from type size, width and weight, and from hairline rules. There are no drop shadows and no cards. Only the gallery lightbox sits above the page: a native `<dialog>` over a 92% navy scrim.
 
 ## Shapes
 
 Corner radius encodes what a thing is, not a single house radius:
 
 - **4px:** photos and code blocks.
-- **6px:** buttons, icon buttons and tooltips.
+- **6px:** buttons and icon buttons.
 - **8px:** the portrait.
-- **Pill:** filter chips only, since they toggle on and off.
-- **Circle:** timeline marks.
+- **22% (112px on the 512px grid):** the site icon.
 
 ## Components
 
-- **Header:** the name on the left, the nav on the right, then the theme toggle. The current section is underlined in data blue, 2px. Below 64rem the nav collapses behind a "Menu" button that swaps to a close icon.
-- **Profile links:** an icon plus a text label, from `site.social.links` in `_config.yml`. The same list feeds the JSON-LD `sameAs`. Brand marks are from Simple Icons (CC0), rendered in the current text colour.
-- **Filter chips:** toggle buttons with `aria-pressed` and an item count. The selected chip is ink-filled. The choice is mirrored in `?type=` so filtered views can be shared, and announced to screen readers.
-- **Timeline:** one row per kind of work (from `_data/navigation.yml`), each with a direct label. X is the item's date, gridlines mark year boundaries, and years are labelled at mid-year. Marks are links with a hover tooltip. The plot is hidden from assistive technology, because the list below holds the same data.
-- **Work list:** grouped by year. Each item has a title link plus one line of prose metadata ("Talk at EARL 2024, Brighton, United Kingdom"), never fragments joined by separators.
+- **Header:** the name on the left, the nav on the right, then the theme toggle. The menu order is set in `_data/navigation.yml`: Talks, Publications, Patents, Tutorials, Project, Teaching, Gallery. The current section is underlined in data blue, 2px. Below 64rem the nav collapses behind a "Menu" button that swaps to a close icon.
+- **Calls to action:** "View talks" (primary) and "View publications" (quiet) on the home page. Use one primary button per group. Buttons are at least 44px tall.
+- **Profile links:** an icon plus a text label, from `site.social.links` in `_config.yml`. The same list feeds the JSON-LD `sameAs`. Brand marks are from Simple Icons (CC0), rendered in the current text colour. They appear on the home page and in the footer of every other page.
+- **Footer:** the copyright line plus links to the sitemap and `llms.txt`. On inner pages it also has the profile links.
+- **Work list (section pages):** grouped by year. Each item has a title link plus one line of prose metadata ("Talk at EARL 2024, Brighton, United Kingdom"), never fragments joined by separators.
 - **Entry facts:** a definition list (Date, Format, Venue, Location, or Filed and Reference for patents) under the title of every talk, paper, patent, tutorial and teaching page.
 - **Citation:** on papers, with "Copy citation" (primary) and "Read the paper" (quiet).
-- **Share:** LinkedIn, X and "Copy link". Facebook and Google+ were dropped.
+- **Share:** LinkedIn, X and "Copy link".
 - **Gallery:** a responsive grid of 3:4 thumbnails, each linking to the full-size image. With JavaScript, a `<dialog>` lightbox adds previous and next buttons, arrow keys and an "n of 11" count.
-- **Buttons:** at least 44px tall. Use one primary button per group, with quiet buttons for the rest.
+- **Theme toggle:** follows the OS until the visitor picks a theme, then remembers it in `localStorage`. A script in `<head>` applies the choice before first paint.
+
+### Site icon
+
+A "TW" monogram: Archivo at 125% width and weight 700, tracked -0.02em, in paper on a navy rounded square (22% radius). The letters fill 74% of the width so they stay legible at 16px. The files:
+
+- **`images/favicon.svg`:** the primary icon. In dark mode it inverts to navy letters on paper.
+- **`favicon.ico`:** at the site root, with 16, 32 and 48px sizes for crawlers and older browsers.
+- **`images/favicon-96x96.png`:** Google prefers icons in multiples of 48px.
+- **`images/apple-touch-icon.png`:** 180px, full-bleed, because iOS applies its own mask.
+- **`images/icon-192.png` and `images/icon-512.png`:** referenced from `images/manifest.json`.
+
+The glyph outlines come from the Google Fonts subset `css2?family=Archivo:wdth,wght@125,700&text=TW`. To change the icon, regenerate every size from that subset so they stay identical.
 
 ### Motion
 
-There is one orchestrated moment: on load, timeline marks scale in from left to right, staggered by date over about a second, as if the chart is being plotted. Everything else is a 120–200ms response to an action, such as hover, filter dimming or a tooltip. `prefers-reduced-motion` turns all of it off.
+Motion only answers an action: hover colours, the menu opening, and the "Copied" state on copy buttons, all 120–200ms. Nothing animates on load or on scroll. `prefers-reduced-motion` turns all of it off.
 
 ### Content and data
 
-- Kinds of work, nav order and labels: `_data/navigation.yml`.
-- Gallery photos and which four appear on the home page (`featured: true`): `_data/gallery.yml`. Thumbnails in `images/gallery/thumbs/` have their shorter side at 800px, JPEG quality 78.
-- Patents need a `date:` equal to their `fileddate` so they sort and plot correctly.
+- Navigation order and the kinds of work: `_data/navigation.yml`.
+- Gallery photos: `_data/gallery.yml`. Thumbnails in `images/gallery/thumbs/` have their shorter side at 800px, JPEG quality 78.
+- Patents need a `date:` equal to their `fileddate` so they sort correctly.
 
 ## Do's and Don'ts
 
+- Do keep the home page to the introduction. New content goes on its own page, linked from the nav.
 - Do write metadata as a sentence ("Paper in arXiv pre-print (cs.AI)"), not as fragments joined with dots or dashes.
 - Do keep every interactive target at least 44 by 44px, with a visible 2px data-blue focus ring.
-- Do design light and dark together, and check both with axe (both currently report zero violations on every page type).
-- Do keep the timeline honest: one colour, labelled rows, hairline grid, and the list as its table view.
+- Do design light and dark together, and check both with axe.
 - Don't add a second accent colour, gradients, cards or drop shadows.
 - Don't use emoji as icons. Use `{% include icon.html name="…" %}`.
 - Don't put labels in all caps, add eyebrows above headings, or append arrows to link text.
 - Don't number things that aren't a sequence.
-- Don't animate on scroll. The timeline's entrance is the only load-time motion.
+- Don't add load-time or scroll-triggered animation.

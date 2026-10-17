@@ -302,13 +302,7 @@ main:focus { outline: none; }
 .site-footer__inner {
   display: grid;
   gap: var(--space-5);
-  padding-block: var(--space-7);
-}
-
-.site-footer__name {
-  color: var(--ink);
-  font-weight: 700;
-  font-stretch: 112%;
+  padding-block: var(--space-6);
 }
 
 .site-footer__meta {
@@ -319,11 +313,6 @@ main:focus { outline: none; }
 }
 
 .site-footer__meta a { text-underline-offset: 0.2em; }
-
-@media (min-width: 64rem) {
-  .site-footer__inner { grid-template-columns: 1fr auto; align-items: start; }
-  .site-footer__meta { grid-column: 1 / -1; }
-}
 
 /* ---------- Profile links ---------- */
 
@@ -360,7 +349,7 @@ main:focus { outline: none; }
 .hero {
   display: grid;
   gap: var(--space-6);
-  padding-block: var(--space-8) var(--space-7);
+  padding-block: var(--space-8) var(--space-6);
 }
 
 .hero__name {
@@ -386,6 +375,8 @@ main:focus { outline: none; }
 
 .hero__bio p + p { margin-top: var(--space-4); }
 
+.hero__actions { margin-top: var(--space-6); }
+
 .social-links--hero { margin-top: var(--space-5); }
 
 .hero__portrait {
@@ -400,7 +391,9 @@ main:focus { outline: none; }
   .hero {
     grid-template-columns: minmax(0, 1fr) 17rem;
     gap: var(--space-8);
-    align-items: end;
+    align-items: center;
+    min-height: calc(100vh - 4.25rem - 14rem);
+    padding-block: var(--space-9) var(--space-8);
   }
   .hero__portrait {
     order: 0;
@@ -408,190 +401,6 @@ main:focus { outline: none; }
     aspect-ratio: 4 / 5;
     object-position: 50% 20%;
   }
-}
-
-/* ---------- Sections ---------- */
-
-.section { padding-top: var(--space-8); }
-
-.section-head {
-  display: grid;
-  gap: var(--space-2);
-  margin-bottom: var(--space-5);
-}
-
-.section-head h2 {
-  font-size: var(--step-3);
-  font-stretch: 112%;
-  letter-spacing: -0.02em;
-}
-
-.section-head__note {
-  max-width: 72ch;
-  color: var(--muted);
-  font-size: var(--step--1);
-}
-
-/* ---------- Filters ---------- */
-
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  margin-bottom: var(--space-6);
-}
-
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  min-height: 44px;
-  padding: 0 var(--space-4);
-  border: 1px solid var(--rule-strong);
-  border-radius: var(--radius-pill);
-  background: var(--surface);
-  color: var(--ink);
-  font: inherit;
-  font-size: var(--step--1);
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 150ms var(--ease), color 150ms var(--ease), border-color 150ms var(--ease);
-}
-
-.chip:hover { border-color: var(--ink-2); }
-
-.chip[aria-pressed="true"] {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--paper);
-}
-
-.chip__count {
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-}
-
-.chip[aria-pressed="true"] .chip__count { color: inherit; opacity: 0.7; }
-
-/* Filters need JavaScript; without it the full list is shown and the buttons are hidden. */
-html:not(.js) .filters { display: none; }
-
-/* ---------- Timeline (strip plot) ---------- */
-
-.timeline {
-  margin: 0 0 var(--space-7);
-  --label: 8.5rem;
-}
-
-.timeline__row {
-  display: grid;
-  grid-template-columns: var(--label) minmax(0, 1fr);
-  align-items: center;
-  border-top: 1px solid var(--rule);
-  transition: opacity 200ms var(--ease);
-}
-
-.timeline__row:last-child { border-bottom: 1px solid var(--rule); }
-
-.timeline__row.is-dimmed { opacity: 0.28; }
-
-.timeline__label {
-  color: var(--ink-2);
-  font-size: var(--step--1);
-  font-weight: 500;
-}
-
-.timeline__track {
-  position: relative;
-  height: 3rem;
-  /* One hairline per year boundary. */
-  background-image: linear-gradient(to right, var(--rule) 1px, transparent 1px);
-  background-size: calc(100% / var(--years)) 100%;
-}
-
-.timeline__mark {
-  position: absolute;
-  left: var(--x);
-  top: 50%;
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  transform: translate(-50%, -50%);
-}
-
-.timeline__mark::before {
-  content: "";
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: var(--data);
-  box-shadow: 0 0 0 2px var(--paper);
-  transition: transform 150ms var(--ease);
-  animation: mark-in 420ms var(--ease) both;
-  animation-delay: calc(120ms + var(--d) * 9ms);
-}
-
-.timeline__mark:hover { z-index: 3; }
-.timeline__mark:hover::before { transform: scale(1.45); }
-
-.timeline__tip {
-  position: absolute;
-  bottom: calc(100% + 4px);
-  left: 50%;
-  display: grid;
-  gap: 2px;
-  width: max-content;
-  max-width: 17rem;
-  padding: var(--space-2) var(--space-3);
-  border-radius: 6px;
-  background: var(--ink);
-  color: var(--paper);
-  font-size: 0.8125rem;
-  line-height: 1.35;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(-50%);
-  transition: opacity 120ms var(--ease);
-}
-
-.timeline__tip strong { font-weight: 600; }
-.timeline__tip span { opacity: 0.8; }
-
-.timeline__mark--start .timeline__tip { left: 0; transform: none; }
-.timeline__mark--end .timeline__tip { left: auto; right: 0; transform: none; }
-
-.timeline__mark:hover .timeline__tip { opacity: 1; }
-
-.timeline__axis {
-  position: relative;
-  height: 1.75rem;
-  margin-left: var(--label);
-  color: var(--muted);
-  font-size: 0.8125rem;
-  font-variant-numeric: tabular-nums;
-}
-
-.timeline__axis span {
-  position: absolute;
-  top: var(--space-2);
-  left: var(--x);
-  transform: translateX(-50%);
-}
-
-/* Animates `scale`, not `transform`, so the finished animation does not block the hover enlargement. */
-@keyframes mark-in {
-  from { opacity: 0; scale: 0.2; }
-  to { opacity: 1; scale: 1; }
-}
-
-@media (max-width: 47.99rem) {
-  .timeline { --label: 0rem; }
-  .timeline__row { grid-template-columns: minmax(0, 1fr); padding-top: var(--space-2); }
-  .timeline__track { height: 2.5rem; }
-  .timeline__axis span:nth-child(even) { display: none; }
-  .timeline__tip { max-width: 13rem; }
 }
 
 /* ---------- Work list ---------- */
@@ -639,54 +448,9 @@ html:not(.js) .filters { display: none; }
 }
 
 @media (min-width: 48rem) {
-  .work-year { grid-template-columns: var(--label, 8.5rem) minmax(0, 1fr); gap: 0; }
+  .work-year { grid-template-columns: 8.5rem minmax(0, 1fr); gap: 0; }
   .work-year__label { padding-top: 0.1rem; }
   .work-year__items { max-width: 46rem; }
-}
-
-/* ---------- Home: workshop ---------- */
-
-.workshop {
-  display: grid;
-  gap: var(--space-6);
-}
-
-.workshop__text {
-  display: grid;
-  gap: var(--space-4);
-  align-content: start;
-  justify-items: start;
-  max-width: 34rem;
-}
-
-.workshop__text h2 {
-  font-size: var(--step-3);
-  font-stretch: 112%;
-  letter-spacing: -0.02em;
-}
-
-.workshop__text p { color: var(--ink-2); }
-
-.workshop__photos {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-3);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.workshop__photos img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  border-radius: var(--radius-s);
-}
-
-@media (min-width: 64rem) {
-  .workshop { grid-template-columns: 20rem minmax(0, 1fr); gap: var(--space-8); }
-  .workshop__photos { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
 /* ---------- Section pages ---------- */
@@ -714,7 +478,7 @@ html:not(.js) .filters { display: none; }
   line-height: 1.5;
 }
 
-.section-page .work-year:first-child { border-top-color: var(--rule-strong); }
+.work-year:first-child { border-top-color: var(--rule-strong); }
 
 /* ---------- Entry (detail pages) ---------- */
 
@@ -1029,6 +793,6 @@ html:not(.js) .filters { display: none; }
 /* ---------- Print ---------- */
 
 @media print {
-  .site-header, .site-footer, .filters, .timeline, .share, .actions, .skip-link { display: none !important; }
+  .site-header, .site-footer, .share, .actions, .skip-link { display: none !important; }
   body { background: #fff; color: #000; }
 }

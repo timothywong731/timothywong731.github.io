@@ -1,35 +1,34 @@
-# main links links
+# Site navigation, in menu order.
+# Items with a `collection` are also the kinds of work shown on the home page timeline and index:
+#   singular  the label used for one item ("Talk at EARL 2024")
 main:
+  - title: "Projects"
+    url: /projects/
 
   - title: "Talks"
-    url: /talks/    
-
-  - title: "Patents"
-    url: /patents/
+    url: /talks/
+    collection: talks
+    singular: "Talk"
 
   - title: "Publications"
     url: /publications/
-    
-  - title: "Teaching"
-    url: /teaching/
+    collection: publications
+    singular: "Paper"
 
-  - title: "Project"
-    url: /projects/
+  - title: "Patents"
+    url: /patents/
+    collection: patents
+    singular: "Patent"
 
   - title: "Tutorials"
     url: /tutorials/
+    collection: tutorials
+    singular: "Tutorial"
+
+  - title: "Teaching"
+    url: /teaching/
+    collection: teaching
+    singular: "Teaching"
 
   - title: "Gallery"
     url: /gallery/
-
-  # - title: "Portfolio"
-    # url: /portfolio/
-        
-  # - title: "Blog Posts"
-    # url: /year-archive/
-    
-  # - title: "CV"
-    # url: /cv/
-    
-  # - title: "Guide"
-    # url: /markdown/

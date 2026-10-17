@@ -4,16 +4,15 @@ title: "TIM-360M: Transformer Inference Model"
 excerpt: "A 360M-parameter small language model, trained end-to-end on consumer-grade hardware."
 og_image: "tim-360m-hero.png"
 permalink: /projects/
-author_profile: true
 ---
 
 ![TIM-360M: Small model. Big possibilities.](/images/tim-360m-hero.png)
 
 **TIM (Transformer Inference Model)** is a small language model (SLM) built from scratch by Tim. The project covers every stage: data sourcing, tokenisation, pretraining, post-training, and evaluation. Training and inference run on consumer grade hardware. No cloud training cluster is involved.
 
-<p>
-  <a href="https://huggingface.co/timothywong731/tim-360m-instruct-GGUF" class="btn btn--large" target="_blank" rel="noopener">🤗 Download from HuggingFace</a>
-  <a href="https://ollama.com/timothywong731/tim-360m-instruct" class="btn btn--large" style="margin-left: 1em;" target="_blank" rel="noopener">🦙 Run on Ollama</a>
+<p class="actions">
+  <a href="https://huggingface.co/timothywong731/tim-360m-instruct-GGUF" class="button" rel="noopener">{% include icon.html name="huggingface" %}<span>Download from Hugging Face</span></a>
+  <a href="https://ollama.com/timothywong731/tim-360m-instruct" class="button button--quiet" rel="noopener">{% include icon.html name="ollama" %}<span>Run on Ollama</span></a>
 </p>
 
 ## Why build a model from scratch?

@@ -1,0 +1,17 @@
+{%- comment -%}
+  Profile links from site.social.links (_config.yml), so the header, footer and JSON-LD share one list.
+{%- endcomment -%}
+<ul class="social-links{% if include.class %} {{ include.class }}{% endif %}">
+  {%- for url in site.social.links -%}
+    {%- if url contains "linkedin.com" -%}{%- assign icon = "linkedin" -%}{%- assign label = "LinkedIn" -%}
+    {%- elsif url contains "github.com" -%}{%- assign icon = "github" -%}{%- assign label = "GitHub" -%}
+    {%- elsif url contains "huggingface.co" -%}{%- assign icon = "huggingface" -%}{%- assign label = "Hugging Face" -%}
+    {%- elsif url contains "orcid.org" -%}{%- assign icon = "orcid" -%}{%- assign label = "ORCID" -%}
+    {%- elsif url contains "x.com" -%}{%- assign icon = "x" -%}{%- assign label = "X" -%}
+    {%- elsif url contains "ollama.com" -%}{%- assign icon = "ollama" -%}{%- assign label = "Ollama" -%}
+    {%- elsif url contains "scholar.google" -%}{%- assign icon = "googlescholar" -%}{%- assign label = "Google Scholar" -%}
+    {%- else -%}{%- assign icon = "link" -%}{%- assign label = url | remove: "https://" | remove: "www." -%}
+    {%- endif %}
+  <li><a href="{{ url }}" rel="me noopener">{% include icon.html name=icon %}<span>{{ label }}</span></a></li>
+  {%- endfor %}
+</ul>

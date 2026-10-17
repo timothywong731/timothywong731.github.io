@@ -1,0 +1,32 @@
+---
+layout: default
+---
+<section class="hero wrap" aria-labelledby="hero-name">
+  <div class="hero__text">
+    <h1 class="hero__name" id="hero-name">{{ site.name }}</h1>
+    <p class="hero__tagline">{{ site.tagline }}</p>
+    <div class="hero__bio">{{ content }}</div>
+    {% include social-links.html class="social-links--hero" %}
+  </div>
+  <img class="hero__portrait" src="{{ '/images/tim-640.jpg' | relative_url }}" width="640" height="640" alt="Portrait of {{ site.name }}">
+</section>
+
+<section class="section wrap" aria-labelledby="work-title">
+  {% include work.html title="Work since :year" filters=true timeline=true %}
+</section>
+
+{%- assign featured = site.data.gallery | where: "featured", true %}
+{%- if featured.size > 0 %}
+<section class="section wrap workshop" aria-labelledby="workshop-title">
+  <div class="workshop__text">
+    <h2 id="workshop-title">Wood carving and CNC</h2>
+    <p>Outside work, Tim carves wood panels, combining CNC machining with hand finishing in native and exotic hardwoods.</p>
+    <a class="button button--quiet" href="{{ '/gallery/' | relative_url }}">See the gallery</a>
+  </div>
+  <ul class="workshop__photos">
+    {%- for item in featured %}
+    <li><img src="{{ item.image | replace: '/gallery/', '/gallery/thumbs/' | relative_url }}" alt="{{ item.description }}" loading="lazy" width="800" height="1066"></li>
+    {%- endfor %}
+  </ul>
+</section>
+{%- endif %}

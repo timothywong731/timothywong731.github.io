@@ -1,0 +1,88 @@
+{%- comment -%}
+  Chronological index of work across the collections listed in _data/navigation.yml.
+    include.only          a collection label, to list one kind only (section pages)
+    include.title         section heading; ":year" becomes the first year
+    include.filters       true to show the filter buttons
+    include.timeline      true to draw the timeline above the list
+    include.year_heading  heading level for the year groups (default h3)
+{%- endcomment -%}
+{%- assign kinds = site.data.navigation.main | where_exp: "k", "k.collection != nil" -%}
+{%- if include.only -%}{%- assign kinds = kinds | where: "collection", include.only -%}{%- endif -%}
+{%- assign items = "" | split: "" -%}
+{%- for k in kinds -%}{%- assign items = items | concat: site[k.collection] -%}{%- endfor -%}
+{%- assign items = items | sort: "date" | reverse -%}
+{%- assign y0 = items.last.date | date: "%Y" | plus: 0 -%}
+{%- assign y1 = items.first.date | date: "%Y" | plus: 0 -%}
+{%- assign hy = include.year_heading | default: "h3" -%}
+
+<div class="work" data-work>
+  {%- if include.title %}
+  <div class="section-head">
+    <h2 id="work-title">{{ include.title | replace: ":year", y0 }}</h2>
+    {%- if include.timeline %}
+    <p class="section-head__note">Each mark is one piece of work. Point at a mark to see what it is, or filter by type.</p>
+    {%- endif %}
+  </div>
+  {%- endif %}
+
+  {%- if include.filters %}
+  <div class="filters" role="group" aria-label="Filter work by type">
+    <button class="chip" type="button" data-filter="all" aria-pressed="true">All <span class="chip__count">{{ items.size }}</span></button>
+    {%- for k in kinds %}
+    <button class="chip" type="button" data-filter="{{ k.collection }}" aria-pressed="false">{{ k.title }} <span class="chip__count">{{ site[k.collection].size }}</span></button>
+    {%- endfor %}
+  </div>
+  {%- endif %}
+
+  {%- if include.timeline %}
+    {%- capture start %}{{ y0 }}-01-01{% endcapture -%}
+    {%- capture stop %}{{ y1 | plus: 1 }}-01-01{% endcapture -%}
+    {%- assign t0 = start | date: "%s" | plus: 0 -%}
+    {%- assign span = stop | date: "%s" | minus: t0 -%}
+    {%- assign years = y1 | minus: y0 | plus: 1 %}
+  <figure class="timeline" style="--years: {{ years }}">
+    <div class="timeline__plot">
+      {%- for k in kinds %}
+      <div class="timeline__row" data-kind="{{ k.collection }}">
+        <span class="timeline__label">{{ k.title }}</span>
+        <div class="timeline__track" aria-hidden="true">
+          {%- for item in site[k.collection] -%}
+            {%- assign x = item.date | date: "%s" | minus: t0 | times: 100.0 | divided_by: span | round: 2 -%}
+            {%- assign side = "" -%}
+            {%- if x > 70 -%}{%- assign side = " timeline__mark--end" -%}{%- elsif x < 15 -%}{%- assign side = " timeline__mark--start" -%}{%- endif %}
+          <a class="timeline__mark{{ side }}" href="{{ item.url | relative_url }}" tabindex="-1" style="--x: {{ x }}%; --d: {{ x | round }}">
+            <span class="timeline__tip"><strong>{{ item.title | strip }}</strong><span>{{ item.date | date: "%B %Y" }}</span></span>
+          </a>
+          {%- endfor %}
+        </div>
+      </div>
+      {%- endfor %}
+    </div>
+    <div class="timeline__axis" aria-hidden="true">
+      {%- for y in (y0..y1) -%}
+        {%- capture mid %}{{ y }}-07-01{% endcapture -%}
+        {%- assign x = mid | date: "%s" | minus: t0 | times: 100.0 | divided_by: span | round: 2 %}
+      <span style="--x: {{ x }}%">{{ y }}</span>
+      {%- endfor %}
+    </div>
+    <figcaption class="visually-hidden">Timeline of {{ items.size }} pieces of work from {{ y0 }} to {{ y1 }}. The list below has the same items.</figcaption>
+  </figure>
+  {%- endif %}
+
+  {%- assign groups = items | group_by_exp: "i", "i.date | date: '%Y'" %}
+  <div class="work-list">
+    {%- for g in groups %}
+    <section class="work-year">
+      <{{ hy }} class="work-year__label">{{ g.name }}</{{ hy }}>
+      <ol class="work-year__items">
+        {%- for item in g.items %}
+        <li class="work-item" data-kind="{{ item.collection }}">
+          <a class="work-item__title" href="{{ item.url | relative_url }}">{{ item.title | strip }}</a>
+          <p class="work-item__meta">{% include work-meta.html item=item %}</p>
+        </li>
+        {%- endfor %}
+      </ol>
+    </section>
+    {%- endfor %}
+  </div>
+</div>

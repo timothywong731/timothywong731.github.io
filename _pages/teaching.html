@@ -3,11 +3,6 @@ layout: archive
 title: "Teaching"
 description: "Teaching by Timothy Wong, including business analytics in R and renewable energy systems."
 permalink: /teaching/
-author_profile: true
 ---
 
-{% include base_path %}
-
-{% for post in site.teaching reversed %}
-  {% include archive-single.html %}
-{% endfor %}
+{% include work.html only="teaching" year_heading="h2" %}

@@ -1,0 +1,9 @@
+{%- assign share_url = page.url | absolute_url | url_encode -%}
+<section class="share" aria-labelledby="share-title">
+  <h2 class="share__title" id="share-title">Share</h2>
+  <ul class="share__links">
+    <li><a href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url }}" rel="noopener">{% include icon.html name="linkedin" %}<span>LinkedIn</span></a></li>
+    <li><a href="https://x.com/intent/post?url={{ share_url }}&amp;text={{ page.title | strip | url_encode }}" rel="noopener">{% include icon.html name="x" %}<span>X</span></a></li>
+    <li><button type="button" data-copy="url">{% include icon.html name="link" %}<span>Copy link</span></button></li>
+  </ul>
+</section>

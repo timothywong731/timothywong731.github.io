@@ -1,9 +1,8 @@
 ---
 layout: single
 title: "Gallery"
+description: "Wood carving and CNC machining by Timothy Wong: classical mouldings, figures and panels in native and exotic hardwoods."
 permalink: /gallery/
-author_profile: true
-columns: 3
 ---
 
 <p>
@@ -14,44 +13,26 @@ columns: 3
   If you are interested in commissioning a custom project, please feel free to contact Tim for a consultation.
 </p>
 
-<div class="gallery" style="--gallery-columns: {{ page.columns | default: 3 }}">
-  {% for item in site.data.gallery %}
-  <figure class="gallery-item">
-    <img class="gallery-thumb" src="{{ item.image }}" alt="{{ item.description | default: 'Gallery image' }}" data-desc="{{ item.description | escape }}" loading="lazy">
-    {% if item.description %}
-    <figcaption>{{ item.description }}</figcaption>
-    {% endif %}
+<ul class="gallery">
+  {%- for item in site.data.gallery %}
+  <li class="gallery__item">
+    <a class="gallery__open" href="{{ item.image | relative_url }}" data-caption="{{ item.description | escape }}">
+      <img src="{{ item.image | replace: '/gallery/', '/gallery/thumbs/' | relative_url }}" alt="{{ item.description | escape }}" loading="lazy">
+    </a>
+    <p class="gallery__caption">{{ item.description }}</p>
+  </li>
+  {%- endfor %}
+</ul>
+
+<dialog class="lightbox" aria-label="Photo viewer">
+  <figure class="lightbox__figure">
+    <img class="lightbox__image" src="" alt="">
+    <figcaption class="lightbox__caption"></figcaption>
   </figure>
-  {% endfor %}
-</div>
-
-
-<div id="gallery-modal" class="gallery-modal">
-  <span class="gallery-close">&times;</span>
-  <img src="" alt="">
-  <p class="desc"></p>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('gallery-modal');
-  const modalImg = modal.querySelector('img');
-  const modalDesc = modal.querySelector('.desc');
-  const closeBtn = modal.querySelector('.gallery-close');
-
-  document.querySelectorAll('.gallery-thumb').forEach(img => {
-    img.addEventListener('click', () => {
-      modalImg.src = img.src;
-      modalImg.alt = img.alt;
-      modalDesc.textContent = img.dataset.desc || img.alt || '';
-      modal.classList.add('open');
-    });
-  });
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal || e.target === closeBtn) {
-      modal.classList.remove('open');
-    }
-  });
-});
-</script>
+  <div class="lightbox__controls">
+    <button class="icon-button" type="button" data-prev aria-label="Previous photo">{% include icon.html name="prev" %}</button>
+    <p class="lightbox__count" aria-live="polite"></p>
+    <button class="icon-button" type="button" data-next aria-label="Next photo">{% include icon.html name="next" %}</button>
+    <button class="icon-button lightbox__close" type="button" data-close aria-label="Close">{% include icon.html name="close" %}</button>
+  </div>
+</dialog>

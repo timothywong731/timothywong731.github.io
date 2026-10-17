@@ -11,6 +11,7 @@ title                    : "Timothy Wong"
 title_separator          : "-"
 name                     : &name "Timothy Wong"
 description              : &description "Timothy Wong: UK-based data science, machine learning and AI engineering professional. Chartered Statistician (CStat) and Chartered Engineer (CEng)."
+tagline                  : "Data science, machine learning and AI engineering." # shown under the name on the home page and in the footer
 url                      : https://timothywong731.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "timothywong731/timothywong731.github.io"
@@ -75,13 +76,13 @@ social:
     - "Small Language Models"
     - "Statistics"
     - "Optimisation"
-  links: # An array of links to social media profiles
-    - "https://github.com/timothywong731"
+  links: # Profiles, in the order the header and footer show them; also used for JSON-LD sameAs
     - "https://www.linkedin.com/in/timothywong731"
-    - "https://orcid.org/0000-0003-1943-6448"
+    - "https://github.com/timothywong731"
     - "https://huggingface.co/timothywong731"
-    - "https://ollama.com/timothywong731"
+    - "https://orcid.org/0000-0003-1943-6448"
     - "https://x.com/timothywong731"
+    - "https://ollama.com/timothywong731"
 
 
 # Analytics
@@ -160,18 +161,12 @@ exclude:
   - README
   - tmp
   - CONTRIBUTING.md
+  - DESIGN.md
   # template leftovers, kept out of the published site and search results
   - _posts
   - _drafts
   - _pages/markdown.md
   - _pages/non-menu-page.md
-  - _pages/archive-layout-with-content.md
-  - _pages/year-archive.html
-  - _pages/category-archive.html
-  - _pages/tag-archive.html
-  - _pages/collection-archive.html
-  - _pages/page-archive.html
-  - _pages/portfolio.html
   - _pages/talkmap.html
   - talkmap
   - talkmap.py

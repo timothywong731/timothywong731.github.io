@@ -1,9 +1,11 @@
 ---
-layout: single
-title: "TIM-360M: Transformer Inference Model"
-excerpt: "A 360M-parameter small language model, trained end-to-end on consumer-grade hardware."
+title: "TIM-360M"
+seo_title: "TIM-360M: a small language model trained from scratch by Timothy Wong"
+date: 2026-07-14
+excerpt: "A 360M-parameter language model trained from scratch on two consumer GPUs."
+thumbnail: /images/projects/tim-360m.jpg
+language: Python
 og_image: "tim-360m-hero.png"
-permalink: /projects/
 ---
 
 ![TIM-360M: Small model. Big possibilities.](/images/tim-360m-hero.png)

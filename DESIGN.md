@@ -248,13 +248,15 @@ Corner radius encodes what a thing is, not a single house radius:
 
 ## Components
 
-- **Header:** the name on the left, the nav on the right, then the theme toggle. The menu order is set in `_data/navigation.yml`: Talks, Publications, Patents, Tutorials, Project, Teaching, Gallery. The current section is underlined in data blue, 2px. Below 64rem the nav collapses behind a "Menu" button that swaps to a close icon.
+- **Header:** the name on the left, the nav on the right, then the theme toggle. The menu order is set in `_data/navigation.yml`: Talks, Publications, Patents, Tutorials, Projects, Teaching, Gallery. The current section is underlined in data blue, 2px. Below 64rem the nav collapses behind a "Menu" button that swaps to a close icon.
 - **Calls to action:** "View talks" (primary) and "View publications" (quiet) on the home page. Use one primary button per group. Buttons are at least 44px tall.
 - **Profile links:** an icon plus a text label, from `site.social.links` in `_config.yml`. The same list feeds the JSON-LD `sameAs`. Brand marks are from Simple Icons (CC0), rendered in the current text colour. They appear on the home page and in the footer of every other page.
 - **Author card:** on every page except home: a circle-cropped photo (8rem on desktop, 3.5rem on phones), the name linking home, and the one-liner from `site.author.bio` in `_config.yml`. It keeps the person in view on deep pages that visitors reach straight from search.
 - **Footer:** the copyright line plus links to the sitemap and `llms.txt`. On inner pages it also has the profile links.
 - **Work list (section pages):** grouped by year. Each item has a title link plus one line of prose metadata ("Talk at EARL 2024, Brighton, United Kingdom"), never fragments joined by separators.
-- **Entry facts:** a definition list (Date, Format, Venue, Location, or Filed and Reference for patents) under the title of every talk, paper, patent, tutorial and teaching page.
+- **Project tiles (`/projects/`):** a grid of tiles, newest first, three across on desktop and one on phones (`minmax(14rem, 1fr)`). Each tile has a 16:10 picture with an 8px radius and a 1px rule border, then the title, a one-sentence summary from `excerpt`, and "year, language" in muted text. The whole tile is one link. A tile whose project has a `link` goes straight there and carries an outbound arrow plus hidden "(external site)" text. Without a `link`, it opens the project's own page. A project without a `thumbnail` gets a cover: a still frame of Latent Drift seeded by its title, in paper ink on a navy gradient, with the title set in display type. It is navy in both themes.
+- **Project index (home):** below the hero, behind a hairline rule aligned to the content edge. It has a "Projects" heading at step-1 (well below the display name) and an "All projects" link. Every project is listed as text only: the title (with the outbound arrow where it links out), the one-line summary and "year, language". Entries sit in three columns on desktop and one on phones, all visible at once. There are no pictures or carousel controls, so nothing competes with the portrait. It uses the project tile include (`_includes/project-tile.html`) with `media="false"` and h3 titles. On desktop, the hero's minimum height leaves the first row in view on laptop-height screens.
+- **Entry facts:** a definition list (Date, Format, Venue, Location, Built with, or Filed and Reference for patents) under the title of every talk, paper, patent, tutorial and teaching page.
 - **Citation:** on papers, with "Copy citation" (primary) and "Read the paper" (quiet).
 - **Share:** LinkedIn, X and "Copy link".
 - **Gallery:** a responsive grid of 3:4 thumbnails, each linking to the full-size image. With JavaScript, a `<dialog>` lightbox adds previous and next buttons, arrow keys and an "n of 11" count.
@@ -305,6 +307,7 @@ Apart from the ambient background, motion only answers an action: hover colours,
 - Navigation order and the kinds of work: `_data/navigation.yml`.
 - Gallery photos: `_data/gallery.yml`. Thumbnails in `images/gallery/thumbs/` have their shorter side at 800px, JPEG quality 78.
 - Patents need a `date:` equal to their `fileddate` so they sort correctly.
+- Projects: one markdown file each in `_projects/`, with `title`, `date` (when it started), `excerpt`, `language`, an optional `link` (where the tile goes) and an optional `thumbnail`. Thumbnails live in `images/projects/` at 960×600, JPEG quality 82. Every project also gets its own page with the full write-up, which `llms.txt` links to.
 
 ## Do's and Don'ts
 

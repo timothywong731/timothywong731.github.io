@@ -224,6 +224,9 @@ collections:
   tutorials:
     output: true
     permalink: /:collection/:path/
+  projects:
+    output: true
+    permalink: /:collection/:path/
 
 
 # Defaults
@@ -288,6 +291,13 @@ defaults:
     values:
       layout: talk
       author_profile: true
+      share: true
+  # _projects
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: single
       share: true
   # _tutorials
   - scope:

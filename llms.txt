@@ -4,7 +4,7 @@ permalink: /llms.txt
 sitemap: false
 ---
 {%- assign about = site.pages | where: "url", "/" | first -%}
-{%- assign project = site.pages | where: "url", "/projects/" | first -%}
+{%- assign projects = site.projects | sort: "date" | reverse -%}
 {%- assign sections = "publications,patents,talks,tutorials,teaching" | split: "," -%}
 # {{ site.name }}
 
@@ -15,9 +15,13 @@ sitemap: false
 ## Profile
 
 - [Biography]({{ site.url }}/): {{ site.social.job_title }}
-- [{{ project.title }}]({{ site.url }}/projects/): {{ project.excerpt | strip_html | normalize_whitespace }}
 {%- for link in site.social.links %}
 - [{{ link | remove: "https://" | remove: "www." }}]({{ link }})
+{%- endfor %}
+
+## Projects
+{% for doc in projects %}
+- [{{ doc.title }}]({{ site.url }}{{ doc.url }}) ({{ doc.date | date: "%Y" }}, {{ doc.language }}): {{ doc.excerpt | strip_html | normalize_whitespace }}{% if doc.link %} Link: {{ doc.link }}{% endif %}
 {%- endfor %}
 {% for label in sections %}
 {%- assign docs = site[label] | sort: "date" | reverse %}

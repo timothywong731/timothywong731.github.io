@@ -1,0 +1,13 @@
+---
+layout: archive
+title: "Projects"
+description: "Things Tim has built in his own time, from a small language model to a map of London's railways."
+seo_title: "Projects by Timothy Wong: language models, maps, developer tools and R packages"
+permalink: /projects/
+---
+{%- assign projects = site.projects | sort: "date" | reverse %}
+<ul class="tiles">
+  {%- for p in projects %}
+  {% include project-tile.html p=p %}
+  {%- endfor %}
+</ul>

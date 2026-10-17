@@ -12,6 +12,9 @@
       {%- if page.venue %}
   <div><dt>{% if page.collection == "publications" %}Published in{% else %}Venue{% endif %}</dt><dd>{{ page.venue }}</dd></div>
       {%- endif %}
+      {%- if page.language %}
+  <div><dt>Built with</dt><dd>{{ page.language }}</dd></div>
+      {%- endif %}
       {%- if page.location %}
   <div><dt>Location</dt><dd>{{ page.location }}</dd></div>
       {%- endif %}

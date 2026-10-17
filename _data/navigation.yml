@@ -22,8 +22,10 @@ main:
     collection: tutorials
     singular: "Tutorial"
 
-  - title: "Project"
+  - title: "Projects"
     url: /projects/
+    collection: projects
+    singular: "Project"
 
   - title: "Teaching"
     url: /teaching/

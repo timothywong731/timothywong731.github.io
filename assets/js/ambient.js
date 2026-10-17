@@ -270,6 +270,29 @@
 
   window.LatentDrift = { create: create, DEFAULTS: DEFAULTS };
 
+  function hash(s) {
+    var h = 731;
+    for (var i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 2654435761);
+    return h;
+  }
+
+  // Project tiles without a picture get one still frame of the same field, seeded by the project's name.
+  // ponytail: painted once at load; a resize rescales the bitmap rather than repainting it.
+  function paintCovers() {
+    var list = document.querySelectorAll('canvas.tile__art');
+    for (var n = 0; n < list.length; n++) {
+      var c = list[n], ctx = c.getContext('2d'), w = c.clientWidth, h = c.clientHeight, dpr = Math.min(devicePixelRatio || 1, 2);
+      if (!ctx || !w || !h) continue;
+      var engine = create(w, h, hash(c.getAttribute('data-seed') || ''), { minPoints: 70, clusters: 4, spread: 0.3, linkRadius: 0.2, flow: 6 });
+      for (var s = 0; s < 120; s++) engine.step(1 / 30);
+      c.width = Math.round(w * dpr); c.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      engine.render(ctx, { ink: '#E9ECF3', signal: '#3987E5' }, 1.6);
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', paintCovers);
+  else paintCovers();
+
   // ---- Mount as the page background ------------------------------------------------------------------
   if (window.LATENT_DRIFT_NO_MOUNT) return;
 
@@ -287,8 +310,7 @@
     var saveData = navigator.connection && navigator.connection.saveData;
 
     // Every page gets its own space, the same one on every visit: base seed 731, mixed with the path.
-    var seed = 731;
-    for (var i = 0; i < location.pathname.length; i++) seed = Math.imul(seed ^ location.pathname.charCodeAt(i), 2654435761);
+    var seed = hash(location.pathname);
 
     var w = canvas.clientWidth || innerWidth, h = canvas.clientHeight || innerHeight, dpr = Math.min(devicePixelRatio || 1, 2);
     var engine = window.LatentDrift.create(w, h, seed);

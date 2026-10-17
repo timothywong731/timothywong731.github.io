@@ -48,7 +48,7 @@ atom_feed:
   path                   : # blank (default) uses feed.xml
 
 # SEO Related
-google_site_verification : # paste the content="..." value from Google Search Console's "HTML tag" method
+google_site_verification : "xAkzcd577llci_eFOeB-KEgVRzv1m6Uu-gCcmcC2fuY" # from Google Search Console's "HTML tag" method
 bing_site_verification   : # only needed if you verify Bing by meta tag instead of importing from Search Console
 alexa_site_verification  :
 yandex_site_verification :

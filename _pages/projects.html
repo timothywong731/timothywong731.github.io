@@ -8,20 +8,6 @@ permalink: /projects/
 {%- assign projects = site.projects | sort: "date" | reverse %}
 <ul class="tiles">
   {%- for p in projects %}
-  <li class="tile">
-    <h2 class="tile__title">
-      <a href="{{ p.link | default: p.url | relative_url }}">{{ p.title }}{% if p.link %}{% include icon.html name="external" %}<span class="visually-hidden"> (external site)</span>{% endif %}</a>
-    </h2>
-    <p class="tile__summary">{{ p.excerpt | strip_html | strip }}</p>
-    <p class="tile__meta">{{ p.date | date: "%Y" }}, {{ p.language }}</p>
-    <div class="tile__media">
-      {%- if p.thumbnail %}
-      <img src="{{ p.thumbnail | relative_url }}" alt="" width="960" height="600" loading="lazy">
-      {%- else %}
-      <canvas class="tile__art" data-seed="{{ p.title | escape }}" aria-hidden="true"></canvas>
-      <span class="tile__name" aria-hidden="true">{{ p.title }}</span>
-      {%- endif %}
-    </div>
-  </li>
+  {% include project-tile.html p=p %}
   {%- endfor %}
 </ul>

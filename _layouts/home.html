@@ -14,3 +14,20 @@ layout: default
   </div>
   <img class="hero__portrait" src="{{ '/images/tim-640.jpg' | relative_url }}" width="640" height="640" alt="Portrait of {{ site.name }}">
 </section>
+
+{%- assign projects = site.projects | sort: "date" | reverse %}
+<section class="project-strip wrap" aria-labelledby="projects-title" data-strip>
+  <div class="project-strip__head">
+    <h2 id="projects-title">Projects</h2>
+    <a class="project-strip__all" href="{{ '/projects/' | relative_url }}">All projects</a>
+    <div class="project-strip__nav" hidden>
+      <button class="icon-button" type="button" data-prev aria-label="Previous projects">{% include icon.html name="prev" %}</button>
+      <button class="icon-button" type="button" data-next aria-label="More projects">{% include icon.html name="next" %}</button>
+    </div>
+  </div>
+  <ul class="tiles tiles--strip">
+    {%- for p in projects %}
+    {% include project-tile.html p=p heading="h3" summary="false" %}
+    {%- endfor %}
+  </ul>
+</section>

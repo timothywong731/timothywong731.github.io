@@ -219,7 +219,7 @@ Sentence case everywhere. No all-caps labels, no letter-spaced eyebrows above he
 - **Container:** max 74rem (1184px), with gutters that scale from 16px to 40px (`clamp(1rem, 4vw, 2.5rem)`).
 - **Alignment:** everything is left-aligned to a single edge. Nothing is centred except the lightbox caption.
 - **Rhythm:** spacing comes from a 4px-based scale (4, 8, 12, 16, 24, 32, 48, 72, 104). The footer sits 104px below content.
-- **Home:** from 64rem up, the introduction and a 17rem portrait sit side by side, vertically centred, and fill the first screen. Below 64rem the portrait shrinks to a 7rem square above the name.
+- **Home:** from 64rem up, the introduction and a 17rem portrait sit side by side, vertically centred, and fill the first screen. Below 64rem the portrait shrinks to a 7rem square above the name; on phones it becomes a centred circle (see Phones and touch).
 - **Inner pages:** from 64rem up, a 13rem author card column sits to the left of the content, 72px apart, and stays in view as you scroll. Below 64rem the card becomes a one-row strip above the page title.
 - **Section pages:** an 8.5rem year column beside the list of items. Below 48rem the year sits above its items.
 - **Breakpoints:** 48rem (year groups stack, phone hero, two-column gallery) and 64rem (two-column hero, author card column, inline nav instead of the menu button, static header).
@@ -254,7 +254,7 @@ Corner radius encodes what a thing is, not a single house radius:
 - **4px:** photos and code blocks.
 - **6px:** buttons and icon buttons.
 - **8px:** the home page portrait.
-- **Circle:** the author card photo.
+- **Circle:** the author card photo, and the home portrait on phones.
 - **22% (112px on the 512px grid):** the site icon.
 
 ## Components
@@ -301,7 +301,7 @@ The glyph outlines come from the Google Fonts subset `css2?family=Archivo:wdth,w
 
 The site is checked at 412×915, the CSS viewport of a Google Pixel 7 or 8, as well as at 375px and on desktop.
 
-- **Home first screen:** on phones the hero tightens (5.5rem portrait, smaller gaps, a 1.375rem tagline), so the photo, name, tagline, bio, all three buttons and the first row of profile links fit on one 915px-tall screen. The buttons stretch to fill their rows and wrap rather than squeeze, so "View projects" takes a row of its own.
+- **Home first screen:** on phones the hero tightens (a 6rem circular portrait centred above the name, matching the author card, plus smaller gaps and a 1.375rem tagline), so the photo, name, tagline, bio, all three buttons and the first row of profile links fit on one 915px-tall screen. The buttons stretch to fill their rows and wrap rather than squeeze, so "View projects" takes a row of its own.
 - **Header:** below 64rem it is sticky on a translucent, blurred paper background. It slides away while you scroll down and returns on any scroll up, or whenever focus is inside it, and stays put while the menu is open. Android has no tap-the-status-bar-to-top gesture, so this keeps navigation one flick away.
 - **Tap targets:** at least 48px for every control on coarse pointers (Android's 48dp guideline), and 44px elsewhere. This covers the header name, back links, profile links, share buttons and footer links. Each item in a work list is tappable across its whole row via a stretched link on the title.
 - **Feedback:** no grey Android tap flash. Buttons scale to 97% while pressed, and work-list rows get a wash. Hover-only effects such as the gallery zoom are limited to `(hover: hover)` so they don't stick after a tap.

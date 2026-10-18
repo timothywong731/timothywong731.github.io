@@ -12,7 +12,10 @@
     <{{ hy }} class="work-year__label">{{ g.name }}</{{ hy }}>
     <ol class="work-year__items">
       {%- for item in g.items %}
-      <li class="work-item">
+      <li class="work-item{% if item.thumbnail %} work-item--thumb{% endif %}">
+        {%- if item.thumbnail %}
+        <img class="work-item__thumb" src="{{ item.thumbnail | relative_url }}" alt="" width="360" height="466" loading="lazy">
+        {%- endif %}
         <a class="work-item__title" href="{{ item.url | relative_url }}">{{ item.title | strip }}</a>
         <p class="work-item__meta">{% include work-meta.html item=item %}</p>
       </li>

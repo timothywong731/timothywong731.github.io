@@ -486,7 +486,28 @@ main:focus { outline: none; }
   font-size: var(--step--1);
 }
 
+/* A first-page preview beside the title; decorative, the title link already names it. */
+.work-item--thumb {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  column-gap: var(--space-4);
+}
+
+.work-item__thumb {
+  grid-row: span 2;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 17 / 22;
+  object-fit: cover;
+  object-position: top;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-s);
+  background: #FFFFFF;
+}
+
 @media (min-width: 48rem) {
+  .work-item--thumb { grid-template-columns: 6rem minmax(0, 1fr); column-gap: var(--space-5); }
   .work-year { grid-template-columns: 8.5rem minmax(0, 1fr); gap: 0; }
   .work-year__label { padding-top: 0.1rem; }
   .work-year__items { max-width: 46rem; }

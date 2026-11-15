@@ -2,6 +2,7 @@
 title: "Scheduling Workbench"
 date: 2026-11-15
 excerpt: "Browser-based classroom scheduling optimiser that fits classes to rooms by capacity, facilities and time restrictions, while minimising rooms used."
+thumbnail: /images/projects/scheduling-workbench.jpg
 language: JavaScript
 link: https://timothywong731.github.io/scheduling-workbench/
 ---

@@ -1,7 +1,8 @@
 {%- comment -%}
   Profile links from site.social.links (_config.yml), so the header, footer and JSON-LD share one list.
 {%- endcomment -%}
-<ul class="social-links{% if include.class %} {{ include.class }}{% endif %}">
+<ul id="profile-links" class="social-links{% if include.class %} {{ include.class }}{% endif %}">
+  <li class="author__desktop"><i class="fas fa-fw fa-location-dot" aria-hidden="true"></i> {{ site.author.location }}</li>
   {%- for url in site.social.links -%}
     {%- if url contains "linkedin.com" -%}{%- assign icon = "linkedin" -%}{%- assign label = "LinkedIn" -%}
     {%- elsif url contains "github.com" -%}{%- assign icon = "github" -%}{%- assign label = "GitHub" -%}

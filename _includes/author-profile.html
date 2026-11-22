@@ -1,0 +1,15 @@
+{% include base_path %}
+{% assign author = site.author %}
+<div itemscope itemtype="https://schema.org/Person">
+  <div class="author__avatar">
+    <img src="{{ author.avatar | prepend: '/images/' | prepend: base_path }}" alt="Portrait of {{ site.name }}" width="175" height="175" fetchpriority="high">
+  </div>
+  <div class="author__content">
+    <p class="author__name">{{ author.name }}</p>
+    <p class="author__bio">{{ author.bio }}</p>
+  </div>
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse" type="button" aria-controls="profile-links" aria-expanded="false">Profile links</button>
+    {% include social-links.html class="author__urls social-icons" %}
+  </div>
+</div>

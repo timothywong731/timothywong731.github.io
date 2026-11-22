@@ -3,6 +3,7 @@ title: "ukgasapi"
 date: 2015-10-18
 excerpt: "An R package on CRAN that loads National Grid gas market data and Elexon electricity demand data into R."
 language: R
+thumbnail: /images/projects/ukgasapi.svg
 link: https://cran.r-project.org/web/packages/ukgasapi/index.html
 ---
 

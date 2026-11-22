@@ -9,16 +9,16 @@ permalink: /projects/
 <ul class="tiles">
   {%- for p in projects %}
   <li class="tile">
-    <h2 class="tile__title">
-      <a href="{{ p.link | default: p.url | relative_url }}">{{ p.title }}{% if p.link %}{% include icon.html name="external" %}<span class="visually-hidden"> (external site)</span>{% endif %}</a>
-    </h2>
-    <p class="tile__summary">{{ p.excerpt | strip_html | strip }}</p>
-    <p class="tile__meta">{{ p.date | date: "%Y" }}, {{ p.language }}</p>
+    <a class="tile__link" href="{{ p.link | default: p.url | relative_url }}">
     <div class="tile__media">
-      {%- if p.thumbnail %}
       <img src="{{ p.thumbnail | relative_url }}" alt="" width="960" height="600" loading="lazy">
-      {%- endif %}
     </div>
+    <div class="tile__body">
+      <h2 class="tile__title">{{ p.title }}{% if p.link %}<span class="visually-hidden"> (external site)</span>{% endif %}</h2>
+      <p class="tile__summary">{{ p.excerpt | strip_html | strip }}</p>
+      <p class="tile__meta">{{ p.date | date: "%Y" }}, {{ p.language }}</p>
+    </div>
+    </a>
   </li>
   {%- endfor %}
 </ul>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600">
+  <rect width="960" height="600" fill="#eef4f6"/>
+  <g stroke="#c7dbe2" stroke-width="2"><path d="M80 100H880M80 180H880M80 260H880M80 340H880"/></g>
+  <path d="M80 285L160 230L240 250L320 140L400 175L480 95L560 180L640 130L720 225L800 170L880 110" fill="none" stroke="#2f7f93" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
+  <g font-family="Arial, sans-serif" fill="#183748"><text x="75" y="450" font-size="72" font-weight="700">ukgasapi</text><text x="80" y="510" font-size="30" fill="#346376">UK energy market data in R</text></g>
+</svg>

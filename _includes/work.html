@@ -1,26 +1,18 @@
-{%- comment -%}
-  Year-grouped list of one kind of work, for the section pages.
-    include.only          the collection label, e.g. "talks"
-    include.year_heading  heading level for the year groups (default h2)
-{%- endcomment -%}
+{%- comment -%} Section lists use existing citation metadata, newest first. {%- endcomment -%}
 {%- assign items = site[include.only] | sort: "date" | reverse -%}
-{%- assign hy = include.year_heading | default: "h2" -%}
-{%- assign groups = items | group_by_exp: "i", "i.date | date: '%Y'" %}
-<div class="work-list">
-  {%- for g in groups %}
-  <section class="work-year">
-    <{{ hy }} class="work-year__label">{{ g.name }}</{{ hy }}>
-    <ol class="work-year__items">
-      {%- for item in g.items %}
-      <li class="work-item{% if item.thumbnail %} work-item--thumb{% endif %}">
-        {%- if item.thumbnail %}
-        <img class="work-item__thumb" src="{{ item.thumbnail | relative_url }}" alt="" width="360" height="466" loading="lazy">
-        {%- endif %}
-        <a class="work-item__title" href="{{ item.url | relative_url }}">{{ item.title | strip }}</a>
-        <p class="work-item__meta">{% include work-meta.html item=item %}</p>
-      </li>
-      {%- endfor %}
-    </ol>
-  </section>
+<ul class="work-list {% if include.only == 'tutorials' or include.only == 'teaching' %}title-list{% else %}citation-list{% endif %}">
+  {%- for item in items %}
+  <li class="work-item" data-date="{{ item.date | date: '%Y-%m-%d' }}">
+    {%- case include.only %}
+      {%- when 'publications' %}
+        {{ item.citation }} <a href="{{ item.url | relative_url }}" aria-label="Details: {{ item.title | escape }}">Details</a>
+      {%- when 'talks' %}
+        Wong, T. ({{ item.date | date: '%Y, %B %-d' }}). <cite><a href="{{ item.url | relative_url }}">{{ item.title | strip }}</a></cite> [{{ item.type | default: 'Presentation' }}]. {{ item.venue }}{% if item.location %}, {{ item.location }}{% endif %}.
+      {%- when 'patents' %}
+        <cite><a href="{{ item.url | relative_url }}">{{ item.title | strip }}</a></cite> ({{ item.date | date: '%Y' }}). Patent {{ item.filedref }}. Filed {{ item.fileddate | date: '%-d %B %Y' }}.
+      {%- else %}
+        <a href="{{ item.url | relative_url }}">{{ item.title | strip }}</a>
+    {%- endcase %}
+  </li>
   {%- endfor %}
-</div>
+</ul>

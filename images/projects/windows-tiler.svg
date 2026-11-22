@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600">
+  <rect width="960" height="600" fill="#162c43"/>
+  <g fill="#e8f0f6" stroke="#83bfd2" stroke-width="3">
+    <rect x="70" y="60" width="395" height="280" rx="12"/>
+    <rect x="485" y="60" width="395" height="130" rx="12"/>
+    <rect x="485" y="210" width="395" height="130" rx="12"/>
+  </g>
+  <g fill="#2f7f93"><rect x="90" y="82" width="355" height="18" rx="4"/><rect x="505" y="82" width="355" height="18" rx="4"/><rect x="505" y="232" width="355" height="18" rx="4"/></g>
+  <g font-family="Arial, sans-serif" fill="#fff"><text x="70" y="450" font-size="64" font-weight="700">Windows Tiler</text><text x="74" y="510" font-size="30" fill="#b7d9e6">Arrange app windows</text></g>
+</svg>

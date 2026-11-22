@@ -3,6 +3,7 @@ title: "Windows Tiler"
 date: 2026-09-06
 excerpt: "Right-click a Windows 11 taskbar group to tile its windows on one monitor or across all of them, with undo."
 language: "C#"
+thumbnail: /images/projects/windows-tiler.svg
 link: https://github.com/timothywong731/windows-tiler
 ---
 

@@ -5,7 +5,8 @@ html[data-theme="dark"] { --global-link-color: #81c7db; --global-link-color-hove
 .author__name { font-weight: bold; }
 .author__urls { z-index: 20; color: var(--global-text-color); }
 .author__urls a { min-height: 32px; }
-.page__footer { color: var(--global-text-color); }
+.page__footer { color: var(--global-text-color); position: relative; bottom: auto; }
+.author__urls a .icon { margin-right: 0.4em; }
 .page__footer-copyright { font-size: 0.78rem; }
 .page__footer-follow li { font-size: 0.78rem; }
 .icon { display: inline-block; width: 1.1em; height: 1.1em; vertical-align: -0.15em; fill: currentColor; flex-shrink: 0; }
@@ -48,3 +49,7 @@ html:has(.lightbox[open]) { overflow: hidden; }
 :focus-visible { outline: 3px solid var(--global-link-color); outline-offset: 3px; }
 .page__content, .archive { overflow-wrap: anywhere; }
 @media (max-width: 480px) { .gallery { grid-template-columns: 1fr; } }
+@media (min-width: 1024px) {
+  /* Keep the full profile in page flow so the footer cannot cover its links. */
+  .sidebar.sticky { position: sticky; top: 70px; bottom: auto; max-height: calc(100vh - 90px); padding-top: 0 !important; }
+}

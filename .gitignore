@@ -2,7 +2,7 @@ _site/
 
 Gemfile.lock
 
-vendor/
+/vendor/
 
 # local browser screenshots
 .playwright-mcp/

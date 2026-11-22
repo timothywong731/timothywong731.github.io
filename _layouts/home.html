@@ -1,18 +1,4 @@
 ---
-layout: default
+layout: single
 ---
-<section class="hero wrap" aria-labelledby="hero-name">
-  <div class="hero__text">
-    <h1 class="hero__name" id="hero-name">{{ site.name }}</h1>
-    <p class="hero__tagline">{{ site.tagline }}</p>
-    <div class="hero__bio">{{ content }}</div>
-    <div class="actions hero__actions">
-      <a class="button" href="{{ '/talks/' | relative_url }}">View talks</a>
-      <a class="button button--quiet" href="{{ '/publications/' | relative_url }}">View publications</a>
-      <a class="button button--quiet" href="{{ '/projects/' | relative_url }}">View projects</a>
-    </div>
-    {% include social-links.html class="social-links--hero" %}
-  </div>
-  <img class="hero__portrait" src="{{ '/images/tim-640.jpg' | relative_url }}" width="640" height="640" alt="Portrait of {{ site.name }}">
-</section>
-
+{{ content }}

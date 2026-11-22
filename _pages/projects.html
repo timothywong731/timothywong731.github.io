@@ -17,9 +17,6 @@ permalink: /projects/
     <div class="tile__media">
       {%- if p.thumbnail %}
       <img src="{{ p.thumbnail | relative_url }}" alt="" width="960" height="600" loading="lazy">
-      {%- else %}
-      <canvas class="tile__art" data-seed="{{ p.title | escape }}" aria-hidden="true"></canvas>
-      <span class="tile__name" aria-hidden="true">{{ p.title }}</span>
       {%- endif %}
     </div>
   </li>
